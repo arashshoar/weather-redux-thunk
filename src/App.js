@@ -1,7 +1,12 @@
 import React from 'react';
 
+import styles from './App.module.scss';
+
 const App = () => (
-    <div>This is my React Weather application</div>
+    <div className={styles.app}>
+      <div>In The Name of GOD</div>
+
+    </div>
 );
 
 export default App;
