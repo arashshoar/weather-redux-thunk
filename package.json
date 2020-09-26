@@ -36,9 +36,10 @@
     ]
   },
   "devDependencies": {
-    "redux-devtools-extension": "^2.13.8",
-    "redux-logger": "^3.0.6",
+    "@types/jest": "^26.0.14",
     "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.5"
+    "enzyme-adapter-react-16": "^1.15.5",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-logger": "^3.0.6"
   }
 }
