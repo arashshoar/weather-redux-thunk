@@ -1,7 +1,7 @@
 import { CONST } from 'utilities/constants';
 import axios from 'axios';
 
-import { getUrl } from "utilities/utilities";
+import { getUrl, mapPlacesToLocations } from "utilities/utilities";
 
 export const getUserCurrentPosition = (options) => (
   new Promise(function (resolve, reject) {
@@ -12,6 +12,16 @@ export const getUserCurrentPosition = (options) => (
 export const setCoords = coords => ({
   type: CONST.SET_COORDS,
   coords,
+});
+
+export const setLocationName = locationName => ({
+  type: CONST.SET_LOCATION_NAME,
+  locationName,
+});
+
+export const setFoundLocations = (foundLocations) => ({
+  type: CONST.SET_FOUND_LOCATIONS,
+  foundLocations,
 });
 
 export const getUsersLocation = () => {
@@ -29,56 +39,39 @@ export const getUsersLocation = () => {
 
     try {
       const { coords: {latitude, longitude}} = await getUserCurrentPosition();
-      dispatch(setCoords(`${latitude},${longitude}`));
       dispatch(fetchLocations({coords: `${longitude},${latitude}`}));
     } catch (error) {
       console.log('User denied to let us have access their location:', error.message);
-      dispatch(setCoords(`40.7648, -73.9808`));
+      dispatch(fetchLocations({coords: '-73.9808,40.7648'}));
     }
   };
 };
 
-export const fetchLocations = ({ locationName, coords }) => {
-  return async function (dispatch) {
-    const data = await axios.get(getUrl({
-      name: coords ? 'coordsQuery': 'locationNameQuery',
-      token: process.env.REACT_APP_TOKEN,
-      locationName,
-      coords
-    }));
+export const fetchLocations = ({ coords, locationName }) => {
 
-    console.log("Arash Data:", data.data);
+  return async (dispatch) => {
 
+    try {
+      const data = await axios(getUrl({
+        name: coords ? 'coordsQuery' : 'locationNameQuery',
+        token: process.env.REACT_APP_TOKEN,
+        locationName,
+        coords
+      }));
+
+      const { data: {features: places} } = data;
+      const foundLocations = Array.isArray(places) && places.length ?
+        mapPlacesToLocations(places) :
+        dispatch(fetchLocations({locationName: 'New York'}));
+
+      dispatch(setFoundLocations(foundLocations));
+
+      const [{coordinates: [longitude, latitude], text: locationNameFounded}] = foundLocations;
+      dispatch(setCoords(`${latitude},${longitude}`));
+      dispatch(setLocationName(locationNameFounded));
+
+    } catch (error) {
+      console.log('Location Error:', error);
+    }
   }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
