@@ -1,9 +1,9 @@
 import { CONST } from 'utilities/constants';
 import axios from 'axios';
 
-import { getUrl, mapPlacesToLocations } from "utilities/utilities";
+import { getUrl, getLocationName, roundCoords, getStoredData, getFreshCurrentWeatherData } from "utilities/utilities";
 
-export const getUserCurrentPosition = (options) => (
+export const getUserCurrentPosition = options => (
   new Promise(function (resolve, reject) {
     navigator.geolocation.getCurrentPosition(resolve, reject, options);
   })
@@ -19,14 +19,24 @@ export const setLocationName = locationName => ({
   locationName,
 });
 
-export const setFoundLocations = (foundLocations) => ({
+export const setFoundLocations = foundLocations => ({
   type: CONST.SET_FOUND_LOCATIONS,
   foundLocations,
 });
 
+export const setMapData = mapData => ({
+  type: CONST.SET_MAP_DATA,
+  mapData,
+});
+
+export const setCurrentWeatherData = (currentWeatherData) => ({
+  type: CONST.SET_CURRENT_WEATHER_DATA,
+  currentWeatherData,
+});
+
 export const getUsersLocation = () => {
 
-  return async (dispatch) => {
+  return async dispatch => {
 
     // New York
     // 40.7648,-73.9808
@@ -40,38 +50,51 @@ export const getUsersLocation = () => {
     try {
       const { coords: {latitude, longitude}} = await getUserCurrentPosition();
       dispatch(fetchLocations({coords: `${longitude},${latitude}`}));
+      dispatch(fetchWeather(latitude, longitude));
+      dispatch(setCoords(`${longitude},${latitude}`));
     } catch (error) {
       console.log('User denied to let us have access their location:', error.message);
       dispatch(fetchLocations({coords: '-73.9808,40.7648'}));
+      dispatch(fetchWeather('40.7648', '-73.9808'));
+      dispatch(setCoords('-73.9808,40.7648'));
     }
   };
 };
 
 export const fetchLocations = ({ coords, locationName }) => {
 
-  return async (dispatch) => {
+  return async dispatch => {
 
     try {
-      const data = await axios(getUrl({
-        name: coords ? 'coordsQuery' : 'locationNameQuery',
-        token: process.env.REACT_APP_TOKEN,
-        locationName,
-        coords
-      }));
+      const storedLocationData = JSON.parse(window.localStorage.getItem('storedLocationData' + roundCoords(coords)));
 
-      const { data: {features: places} } = data;
-      const foundLocations = Array.isArray(places) && places.length ?
-        mapPlacesToLocations(places) :
-        dispatch(fetchLocations({locationName: 'New York'}));
+      const data = storedLocationData
+        ? storedLocationData
+        : await axios.get(getUrl({
+              name: coords ? 'coordsQuery' : 'locationNameQuery',
+              token: process.env.REACT_APP_TOKEN,
+              locationName,
+              coords
+            }));
 
-      dispatch(setFoundLocations(foundLocations));
-
-      const [{coordinates: [longitude, latitude], text: locationNameFounded}] = foundLocations;
-      dispatch(setCoords(`${latitude},${longitude}`));
-      dispatch(setLocationName(locationNameFounded));
+      window.localStorage.setItem('storedLocationData' + roundCoords(coords), JSON.stringify(data));
+      const { data: mapData } = data;
+      dispatch(setLocationName(getLocationName(mapData)));
+      dispatch(setMapData(mapData));
 
     } catch (error) {
       console.log('Location Error:', error);
     }
+  }
+};
+
+export const fetchWeather = (latitude, longitude) => {
+  return async dispatch => {
+
+    const weatherCurrentData = getStoredData(latitude, longitude)
+      ? getStoredData(latitude, longitude)
+      : await getFreshCurrentWeatherData(latitude, longitude);
+
+    dispatch(setCurrentWeatherData(weatherCurrentData));
   }
 };

@@ -7,7 +7,7 @@ import styles from './App.module.scss';
 const App = ({ getUsersLocation }) => {
 
   React.useEffect(() => {
-    // getUsersLocation();
+    getUsersLocation();
   });
 
   return (
