@@ -1,57 +1,21 @@
 import React from 'react';
-import { shallow, mount} from 'enzyme';
-import App from '../App';
+import { mount } from 'enzyme';
+
 import Root from 'Root';
+import App from 'App';
+import { localStorageMock, geolocationMock } from 'test-utilities/mocks';
+import { weatherCurrentData } from "utilities/test-utilities/mockData/weatherCurrentData";
 
-// const mapData = require('./mapData');
-import { mapDataString } from './mapDataString';
-import { weatherCurrentData } from "./weatherCurrentData";
-// import { mapData } from './mapData'
-import { weatherCurrentString } from './weatherCurrentString';
-const mapData = require('./mapData');
+const mapData = require('utilities/test-utilities/mockData/mapData');
 
-const mockGeolocation = {
-  getCurrentPosition: jest
-    .fn()
-    .mockImplementationOnce(
-      (res, rej, options) => {
-        rej(new Error('User denied our permission to access their location'));
-      }
-    )
-    .mockImplementation(
-      (res, rej, options) => {
-        res({coords: {latitude: 37.3118288, longitude: -121.9770887}});
-      }
-    )
-};
-
-global.navigator.geolocation = mockGeolocation;
-
-// browser mocks
-const localStorageMock = (function() {
-  let store = {}
-  return {
-    getItem: function(key) {
-      return store[key] || null
-    },
-    setItem: function(key, value) {
-      store[key] = value.toString()
-    },
-    removeItem: function(key) {
-      delete store[key]
-    },
-    clear: function() {
-      store = {}
-    },
-  }
-})();
+global.navigator.geolocation = geolocationMock;
 
 Object.defineProperty(window, 'localStorage', {
-  value: localStorageMock,
+  value: new localStorageMock(),
 });
 
 jest.mock('axios', () => {
-  const mapData = require('./mapData');
+  const mapData = require('../utilities/test-utilities/mockData/mapData');
   return {get: jest.fn(() => Promise.resolve(mapData))};
 });
 
@@ -60,8 +24,6 @@ function flushPromise() {
 }
 
 describe('When we are testing App component', () => {
-  // window.localStorage.setItem("AAA", "In Storage ast")
-
   let wrapper;
 
   const getStore = App => App.find('Provider').prop('store').getState();
@@ -85,9 +47,17 @@ describe('When we are testing App component', () => {
     expect(getStore(App).coords).toMatch('-121.9770887,37.3118288');
   });
 
-  it('When we have weather data on localStorage it use the local storage data', async () => {
-    // window.localStorage.setItem('storedLocationData-121.98,37.31', JSON.stringify(mapData));
+  it('When we have weather data on localStorage it use the local storage data but map data has damaged stored data', async () => {
     window.localStorage.setItem('storedLocationData-121.98,37.31', {});
+    window.localStorage.setItem('storedWeatherData37.31-121.98', JSON.stringify(weatherCurrentData));
+    window.localStorage.setItem('storedWeatherDataTime37.31-121.98', JSON.stringify(new Date().getTime()));
+    const App = wrapper();
+    await flushPromise();
+    expect(getStore(App).currentWeatherData.currentWeatherData.dt).toBe(1601486785);
+  });
+
+  it('When we have both weather and map data on localStorage it use the local storage data', async () => {
+    window.localStorage.setItem('storedLocationData-121.98,37.31', JSON.stringify(mapData));
     window.localStorage.setItem('storedWeatherData37.31-121.98', JSON.stringify(weatherCurrentData));
     window.localStorage.setItem('storedWeatherDataTime37.31-121.98', JSON.stringify(new Date().getTime()));
     const App = wrapper();
