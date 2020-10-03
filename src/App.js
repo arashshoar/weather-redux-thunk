@@ -1,14 +1,14 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { getUsersLocation } from 'actions/actions';
+import React from 'react'
+import { connect } from 'react-redux'
+import { getUsersLocation } from 'actions/actions'
 
-import styles from './App.module.scss';
+import styles from './App.module.scss'
 
 const App = ({ getUsersLocation }) => {
 
   React.useEffect(() => {
-    getUsersLocation();
-  });
+    getUsersLocation()
+  })
 
   return (
     <div className={styles.app}>
@@ -17,12 +17,12 @@ const App = ({ getUsersLocation }) => {
       <button onClick={getUsersLocation}>Fetch</button>
     </div>
   )
-};
+}
 
 const mapDispatchToProps = dispatch => {
   return {
     getUsersLocation: () => dispatch(getUsersLocation()),
-  };
-};
+  }
+}
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App)

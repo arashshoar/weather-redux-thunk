@@ -50,4 +50,4 @@ export const weatherCurrentData = {
       cod: 200
     }
   }
-};
+}

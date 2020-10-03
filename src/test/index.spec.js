@@ -1,21 +1,21 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "../App";
-import Root from 'Root';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from 'App'
+import Root from 'Root'
 
-jest.mock("react-dom", () => ({ render: jest.fn() }));
+jest.mock('react-dom', () => ({ render: jest.fn() }))
 
-describe("Application root", () => {
-  it("should render without crashing", () => {
-    const div = document.createElement("div");
-    div.id = "root";
-    document.body.appendChild(div);
-    require("../index.js");
+describe('Application root', () => {
+  it('should render without crashing', () => {
+    const div = document.createElement('div')
+    div.id = 'root'
+    document.body.appendChild(div)
+    require('../index.js')
     expect(ReactDOM.render).toHaveBeenCalledWith(
       <React.StrictMode>
         <Root>
           <App/>
         </Root>
-      </React.StrictMode>, div);
-  });
-});
+      </React.StrictMode>, div)
+  })
+})

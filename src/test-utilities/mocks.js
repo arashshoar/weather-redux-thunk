@@ -1,22 +1,22 @@
 
 export class localStorageMock {
-  store = {};
+  store = {}
 
   getItem = (key) => {
-    return this.store[key] || null;
+    return this.store[key] || null
   }
 
   setItem = (key, value) => {
-    this.store[key] = value.toString();
+    this.store[key] = value.toString()
   }
 
   // // if you need you removeItem and clear methods as well, you can uncomment these
   // removeItem = (key) => {
-  //   delete this.store[key];
+  //   delete this.store[key]
   // }
   //
   // clear = () => {
-  //   this.store = {};
+  //   this.store = {}
   // }
 }
 
@@ -25,12 +25,12 @@ export const geolocationMock = {
     .fn()
     .mockImplementationOnce(
       (res, rej, options) => {
-        rej(new Error('User denied our permission to access their location'));
+        rej(new Error('User denied our permission to access their location'))
       }
     )
     .mockImplementation(
       (res, rej, options) => {
-        res({coords: {latitude: 37.3118288, longitude: -121.9770887}});
+        res({coords: {latitude: 37.3118288, longitude: -121.9770887}})
       }
     )
-};
+}

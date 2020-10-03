@@ -1323,4 +1323,4 @@ export const weatherForecastData = {
       ]
     }
   }
-};
+}
