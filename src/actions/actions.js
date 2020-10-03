@@ -1,7 +1,7 @@
-import { CONST } from 'utilities/constants';
+import { CONST, someCityCoords } from 'utilities/constants';
 import axios from 'axios';
 
-import { getUrl, getLocationName, roundCoords, getStoredData, getFreshCurrentWeatherData } from "utilities/utilities";
+import { getUrl, getLocationName, roundCoords, getStoredData, getFreshWeatherData } from "utilities/utilities";
 
 export const getUserCurrentPosition = options => (
   new Promise(function (resolve, reject) {
@@ -34,29 +34,27 @@ export const setCurrentWeatherData = (currentWeatherData) => ({
   currentWeatherData,
 });
 
+export const setForecastWeatherData = (forecastWeatherData) => ({
+  type: CONST.SET_FORECAST_WEATHER_DATA,
+  forecastWeatherData,
+});
+
 export const getUsersLocation = () => {
 
   return async dispatch => {
 
-    // New York
-    // 40.7648,-73.9808
-    //
-    // Atlanta
-    // 33.7491,-84.3902
-    //
-    // Miniapolis
-    // -6.193206,106.821957
-
     try {
       const { coords: {latitude, longitude}} = await getUserCurrentPosition();
       dispatch(fetchLocations({coords: `${longitude},${latitude}`}));
-      dispatch(fetchWeather(latitude, longitude));
+      dispatch(fetchWeather('weatherQueryCurrent', 'storedCurrentWeatherData', latitude, longitude));
+      dispatch(fetchWeather('weatherQueryForecast', 'storedForecastWeatherData', latitude, longitude));
       dispatch(setCoords(`${longitude},${latitude}`));
     } catch (error) {
       console.log('User denied to let us have access their location:', error.message);
-      dispatch(fetchLocations({coords: '-73.9808,40.7648'}));
-      dispatch(fetchWeather('40.7648', '-73.9808'));
-      dispatch(setCoords('-73.9808,40.7648'));
+      dispatch(fetchLocations({coords: someCityCoords.NewYork}));
+      dispatch(fetchWeather('weatherQueryCurrent', 'storedCurrentWeatherData', '40.7648', '-73.9808'));
+      dispatch(fetchWeather('weatherQueryForecast','storedForecastWeatherData', '40.7648', '-73.9808'));
+      dispatch(setCoords(someCityCoords.NewYork));
     }
   };
 };
@@ -88,13 +86,18 @@ export const fetchLocations = ({ coords, locationName }) => {
   }
 };
 
-export const fetchWeather = (latitude, longitude) => {
+export const fetchWeather = (weatherQueryKey, storeKey, latitude, longitude) => {
+
   return async dispatch => {
 
-    const weatherCurrentData = getStoredData(latitude, longitude)
-      ? getStoredData(latitude, longitude)
-      : await getFreshCurrentWeatherData(latitude, longitude);
+    const weatherData = getStoredData(storeKey, latitude, longitude)
+      ? getStoredData(storeKey, latitude, longitude)
+      : await getFreshWeatherData(weatherQueryKey, storeKey, latitude, longitude);
 
-    dispatch(setCurrentWeatherData(weatherCurrentData));
+    if (weatherQueryKey === 'weatherQueryCurrent') {
+      dispatch(setCurrentWeatherData(weatherData));
+    } else {
+      dispatch(setForecastWeatherData(weatherData))
+    }
   }
 };

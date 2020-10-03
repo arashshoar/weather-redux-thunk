@@ -9,6 +9,8 @@ export const getUrl = ({ name, accessKey, locationName, token, coords, latitude,
       return `https://api.mapbox.com/geocoding/v5/mapbox.places/${locationName}.json?access_token=${token}`;
     case 'weatherQueryCurrent':
       return `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${accessKey}`;
+    case 'weatherQueryForecast':
+      return `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=minutely&appid=${accessKey}`;
     case 'googleMap':
       return `https://maps.googleapis.com/maps/api/js?key=${accessKey}&callback=initMap`;
     default:
@@ -60,27 +62,32 @@ export const isStoredDataFresh = storageTime => {
   return date.getTime() - sDate.getTime() < 3600000;
 };
 
-export const getStoredData = (latitude, longitude) => {
+const getRoundLatLng = (latitude, longitude) => {
   const roundLat = Math.round(latitude * 100) / 100;
   const roundLng = Math.round(longitude * 100) / 100;
-  const storedWeatherData = JSON.parse(window.localStorage.getItem('storedWeatherData' + roundLat + roundLng));
-  const storageTime = JSON.parse(window.localStorage.getItem('storedWeatherDataTime' + roundLat + roundLng));
 
-  return storedWeatherData && isStoredDataFresh(storageTime) ? storedWeatherData.data : false;
+  return ({roundLat, roundLng});
 };
 
-export const getFreshCurrentWeatherData = async (latitude, longitude) => {
-  const roundLat = Math.round(latitude * 100) / 100;
-  const roundLng = Math.round(longitude * 100) / 100;
+export const getStoredData = (storeKey, latitude, longitude) => {
+  const { roundLat, roundLng } = getRoundLatLng(latitude, longitude);
+  const storedCurrentWeatherData = JSON.parse(window.localStorage.getItem(storeKey + roundLat + roundLng));
+  const storageTime = JSON.parse(window.localStorage.getItem(storeKey + 'Time' + roundLat + roundLng));
+
+  return storedCurrentWeatherData && isStoredDataFresh(storageTime) ? storedCurrentWeatherData.data : false;
+};
+
+export const getFreshWeatherData = async (weatherQueryKey, storeKey, latitude, longitude) => {
+  const { roundLat, roundLng } = getRoundLatLng(latitude, longitude);
 
   const data = await axios.get(getUrl({
-    name: 'weatherQueryCurrent',
+    name: weatherQueryKey,
     accessKey: process.env.REACT_APP_WEATHER,
     latitude: roundLat,
     longitude: roundLng,
   }));
-  window.localStorage.setItem('storedWeatherDataTime' + roundLat + roundLng, JSON.stringify(new Date().getTime()));
-  window.localStorage.setItem('storedWeatherData' + roundLat + roundLng, JSON.stringify(data));
+  window.localStorage.setItem(storeKey + 'Time' + roundLat + roundLng, JSON.stringify(new Date().getTime()));
+  window.localStorage.setItem(storeKey + roundLat + roundLng, JSON.stringify(data));
 
   return data.data;
 };

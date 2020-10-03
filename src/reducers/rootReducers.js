@@ -12,6 +12,8 @@ const rootReducers = (state, action) => {
       return {...state, mapData: action.mapData};
     case CONST.SET_CURRENT_WEATHER_DATA:
       return {...state, currentWeatherData: action.currentWeatherData};
+    case CONST.SET_FORECAST_WEATHER_DATA:
+      return {...state, forecastWeatherData: action.forecastWeatherData};
     default:
       return state;
   }
