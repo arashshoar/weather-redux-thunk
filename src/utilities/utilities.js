@@ -8,9 +8,9 @@ export const getUrl = ({ name, accessKey, locationName, token, coords, latitude,
   case 'locationNameQuery':
     return `https://api.mapbox.com/geocoding/v5/mapbox.places/${locationName}.json?access_token=${token}`
   case 'weatherQueryCurrent':
-    return `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${accessKey}`
+    return `https://api.openweathermap.org/data/2.5/weather?units=imperial&lat=${latitude}&lon=${longitude}&appid=${accessKey}`
   case 'weatherQueryForecast':
-    return `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=minutely&appid=${accessKey}`
+    return `https://api.openweathermap.org/data/2.5/onecall?units=imperial&lat=${latitude}&lon=${longitude}&exclude=minutely&appid=${accessKey}`
   case 'googleMap':
     return `https://maps.googleapis.com/maps/api/js?key=${accessKey}&callback=initMap`
   default:

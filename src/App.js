@@ -12,9 +12,18 @@ const App = ({ getUsersLocation }) => {
 
   return (
     <div className={styles.app}>
-      <div>In The Name of GOD</div>
-      <img src='https://s.yimg.com/os/weather/1.0.1/precipitation/54x60/rain_ico_100@2x.png' />
-      <button onClick={getUsersLocation}>Fetch</button>
+      <div className={styles.asideContainer}>
+
+      </div>
+      <div className={styles.temperatureContainer}>
+        <div>In The Name of GOD</div>
+      </div>
+      <div className={styles.links}></div>
+      <div className={styles.componentsSetOne}>
+        <button onClick={getUsersLocation}>Fetch</button>
+      </div>
+      <div className={styles.componentsSetTwo}></div>
+
     </div>
   )
 }

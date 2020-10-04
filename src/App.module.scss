@@ -1,3 +1,69 @@
+@import 'utilities/design-utilities/sass-variables';
+
 .app {
   color: navy;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "temperatureContainer"
+    "componentsSetOne"
+    "componentsSetTwo"
+    "links";
+  max-width: 1200px;
+  min-height: 800px;
+
+
+  .asideContainer {
+    grid-area: asideContainer;
+    border: solid 2px red;
+    display: none;
+  }
+
+  .temperatureContainer {
+    grid-area: temperatureContainer;
+    border: solid 2px orange;
+
+  }
+
+  .links {
+    grid-area: links;
+    border: solid 2px blue;
+
+  }
+
+  .componentsSetOne {
+    grid-area: componentsSetOne;
+    border: solid 2px green;
+
+  }
+
+  .componentsSetTwo {
+    grid-area: componentsSetTwo;
+    border: solid 2px maroon;
+  }
+
+  @media only screen and (min-width: $mdBreakPoint ) {
+    grid-template-areas:
+            "temperatureContainer temperatureContainer"
+            "links links"
+            "componentsSetOne componentsSetTwo"
+            "componentsSetOne componentsSetTwo"
+            "componentsSetOne componentsSetTwo";
+  }
+
+  @media only screen and (min-width: $xlBreakPoint ) {
+    margin: auto;
+    min-width: 1200px;
+    grid-template-areas:
+            "asideContainer temperatureContainer temperatureContainer temperatureContainer temperatureContainer"
+            "asideContainer links links links links"
+            "asideContainer componentsSetOne componentsSetOne componentsSetTwo componentsSetTwo";
+
+    .asideContainer {
+      display: grid;
+    }
+  }
 }
+
+
