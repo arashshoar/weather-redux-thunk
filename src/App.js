@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { getUsersLocation } from 'actions/actions'
+import CurrentTemp from 'components/CurrentTemp/CurrentTemp'
 
 import styles from './App.module.scss'
 
@@ -15,8 +16,8 @@ const App = ({ getUsersLocation }) => {
       <div className={styles.asideContainer}>
 
       </div>
-      <div className={styles.temperatureContainer}>
-        <div>In The Name of GOD</div>
+      <div className={styles.currentTempContainer}>
+        <CurrentTemp />
       </div>
       <div className={styles.links}></div>
       <div className={styles.componentsSetOne}>

@@ -91,3 +91,21 @@ export const getFreshWeatherData = async (weatherQueryKey, storeKey, latitude, l
 
   return data.data
 }
+
+export const getDateTimeFromMilSecs = miliSec => {
+  const localDate = new Date(Number(miliSec + '000'))
+  let [localTime, AMPM] = localDate.toLocaleTimeString().split(' ')
+
+  return {
+    time: `${localTime.split(':').slice(0, 2).join(':')} ${AMPM}`,
+    date: `${localDate.getMonth()}/${localDate.getDate()}`
+  }
+}
+
+export const joinDesOfWeather = weather => weather.reduce(
+  (wholeDesc, weather) => (`${wholeDesc} ${weather.description}`), ''
+)
+
+export const firstLetterUp = str => str[1].toUpperCase() + str.substr(2).toLocaleLowerCase()
+
+export const getDesOfWeather = weather => firstLetterUp(joinDesOfWeather(weather))

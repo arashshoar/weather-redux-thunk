@@ -1,4 +1,4 @@
-export const weatherCurrentData = {
+export const currentWeatherData = {
   data: {
     currentWeatherData: {
       coord: {

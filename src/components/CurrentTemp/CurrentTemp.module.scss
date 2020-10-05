@@ -1,0 +1,43 @@
+@import "utilities/design-utilities/sass-variables.scss";
+
+.currentTemp {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 432px;
+
+  .tempHeader {
+    display: flex;
+
+    .locationTime {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .tempFooter{
+
+    .description {
+      display: flex;
+      align-items: flex-end;
+
+      div {
+        font-size: 1.2rem;
+      }
+
+      img {
+        width: 32px;
+        height: 32px;
+        margin-right: 5px;
+      }
+    }
+
+    .minMax {
+
+    }
+
+    .temp {
+      font-family: ArashShoarHelveticaNeue;
+    }
+  }
+}

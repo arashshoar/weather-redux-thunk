@@ -1,4 +1,4 @@
-export const weatherForecastData = {
+export const forecastWeatherData = {
   data: {
     forecastWeatherData: {
       lat: 37.31,

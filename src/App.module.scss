@@ -6,12 +6,12 @@
   grid-template-columns: auto;
   grid-template-rows: auto;
   grid-template-areas:
-    "temperatureContainer"
+    "currentTempContainer"
     "componentsSetOne"
     "componentsSetTwo"
     "links";
   max-width: 1200px;
-  min-height: 800px;
+  //min-height: 800px;
 
 
   .asideContainer {
@@ -20,10 +20,12 @@
     display: none;
   }
 
-  .temperatureContainer {
-    grid-area: temperatureContainer;
+  .currentTempContainer {
+    grid-area: currentTempContainer;
     border: solid 2px orange;
-
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .links {
@@ -45,7 +47,7 @@
 
   @media only screen and (min-width: $mdBreakPoint ) {
     grid-template-areas:
-            "temperatureContainer temperatureContainer"
+            "currentTempContainer currentTempContainer"
             "links links"
             "componentsSetOne componentsSetTwo"
             "componentsSetOne componentsSetTwo"
@@ -56,7 +58,7 @@
     margin: auto;
     min-width: 1200px;
     grid-template-areas:
-            "asideContainer temperatureContainer temperatureContainer temperatureContainer temperatureContainer"
+            "asideContainer currentTempContainer currentTempContainer currentTempContainer currentTempContainer"
             "asideContainer links links links links"
             "asideContainer componentsSetOne componentsSetOne componentsSetTwo componentsSetTwo";
 

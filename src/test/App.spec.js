@@ -4,8 +4,8 @@ import { mount } from 'enzyme'
 import Root from 'Root'
 import App from 'App'
 import { localStorageMock, geolocationMock } from 'test-utilities/mocks'
-import { weatherCurrentData } from 'utilities/test-utilities/mockData/weatherCurrentData'
-import { weatherForecastData } from 'utilities/test-utilities/mockData/weatherForecastData'
+import { currentWeatherData } from 'utilities/test-utilities/mockData/currentWeatherData'
+import { forecastWeatherData } from 'utilities/test-utilities/mockData/forecastWeatherData'
 import { someCityCoords } from 'utilities/constants'
 
 const mapData = require('utilities/test-utilities/mockData/mapData')
@@ -51,9 +51,9 @@ describe('When we are testing App component', () => {
 
   it('When we have weather data on localStorage it use the local storage data but map data has damaged stored data', async () => {
     window.localStorage.setItem('storedLocationData-121.98,37.31', {})
-    window.localStorage.setItem('storedCurrentWeatherData37.31-121.98', JSON.stringify(weatherCurrentData))
+    window.localStorage.setItem('storedCurrentWeatherData37.31-121.98', JSON.stringify(currentWeatherData))
     window.localStorage.setItem('storedCurrentWeatherDataTime37.31-121.98', JSON.stringify(new Date().getTime()))
-    window.localStorage.setItem('storedForecastWeatherData37.31-121.98', JSON.stringify(weatherForecastData))
+    window.localStorage.setItem('storedForecastWeatherData37.31-121.98', JSON.stringify(forecastWeatherData))
     window.localStorage.setItem('storedForecastWeatherDataTime37.31-121.98', JSON.stringify(new Date().getTime()))
     const App = wrapper()
     await flushPromise()
@@ -62,9 +62,9 @@ describe('When we are testing App component', () => {
 
   it('When we have both weather and map data on localStorage it use the local storage data', async () => {
     window.localStorage.setItem('storedLocationData-121.98,37.31', JSON.stringify(mapData))
-    window.localStorage.setItem('storedCurrentWeatherData37.31-121.98', JSON.stringify(weatherCurrentData))
+    window.localStorage.setItem('storedCurrentWeatherData37.31-121.98', JSON.stringify(currentWeatherData))
     window.localStorage.setItem('storedCurrentWeatherDataTime37.31-121.98', JSON.stringify(new Date().getTime()))
-    window.localStorage.setItem('storedForecastWeatherData37.31-121.98', JSON.stringify(weatherForecastData))
+    window.localStorage.setItem('storedForecastWeatherData37.31-121.98', JSON.stringify(forecastWeatherData))
     window.localStorage.setItem('storedForecastWeatherDataTime37.31-121.98', JSON.stringify(new Date().getTime()))
     const App = wrapper()
     await flushPromise()
