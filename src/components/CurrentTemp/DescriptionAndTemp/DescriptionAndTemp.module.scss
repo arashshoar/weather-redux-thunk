@@ -1,0 +1,55 @@
+@import "utilities/design-utilities/sass-variables.scss";
+$currentTempBase: 1rem;
+
+.descriptionAndTemp {
+
+  .description {
+    display: flex;
+    align-items: flex-end;
+
+    div {
+      font-size: 1.2rem;
+    }
+
+    img {
+      width: 32px;
+      height: 32px;
+      margin-right: 5px;
+    }
+  }
+
+  .tempAndUnits {
+    display: flex;
+    align-items: flex-end;
+
+    .temp {
+      font-family: ArashShoarHelveticaNeue;
+      font-size: 6 * $currentTempBase;
+      margin-bottom: -30px;
+    }
+
+    .units {
+      display: flex;
+      flex-direction: column;
+      font-size: 1.4 * $currentTempBase;
+      padding-bottom: 14px;
+      font-weight: 300;
+    }
+  }
+
+  @media only screen and (min-width: $lgBreakPoint) {
+
+    .tempAndUnits{
+
+      .temp {
+        font-size: 8 * $currentTempBase;
+      }
+
+      .units {
+        font-size: 2 * $currentTempBase;
+        padding-bottom: 26px;
+        font-weight: 200;
+      }
+    }
+  }
+}

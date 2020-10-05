@@ -1,0 +1,42 @@
+@import "utilities/design-utilities/sass-variables.scss";
+$currentTempBase: 1rem;
+.locationAndDate{
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+
+  .city {
+    font-size: 1.5 * $currentTempBase;
+  }
+
+  .country, .dateTime {
+    font-size: 0.9 * $currentTempBase;
+    font-weight: 100;
+    font-style: italic;
+    margin-bottom: 5px;
+  }
+
+
+  @media only screen and (min-width: $smBreakPoint) {
+    padding-bottom: 0;
+
+    .city {
+      font-size: 2 * $currentTempBase;
+    }
+  }
+
+  @media only screen and (min-width: $xlBreakPoint) {
+    .city {
+      font-size: 3 * $currentTempBase;
+      padding-right: 20px;
+    }
+
+    .country, .dateTime {
+      font-size: 1 * $currentTempBase;
+      font-weight: 100;
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+  }
+
+}

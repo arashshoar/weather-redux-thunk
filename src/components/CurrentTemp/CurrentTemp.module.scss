@@ -1,43 +1,33 @@
 @import "utilities/design-utilities/sass-variables.scss";
+$currentTempBase: 1rem;
 
 .currentTemp {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 432px;
+  min-height: 340px;
 
   .tempHeader {
     display: flex;
+    flex-direction: column;
+  }
 
-    .locationTime {
-      display: flex;
-      flex-direction: column;
+  @media only screen and (min-width: $smBreakPoint) {
+
+    .tempHeader {
+      flex-direction: row;
+      align-items: center;
     }
   }
 
-  .tempFooter{
+  @media only screen and (min-width: $mdBreakPoint) {
+    min-height: 432px;
+  }
 
-    .description {
-      display: flex;
-      align-items: flex-end;
+  @media only screen and (min-width: $xlBreakPoint) {
 
-      div {
-        font-size: 1.2rem;
-      }
-
-      img {
-        width: 32px;
-        height: 32px;
-        margin-right: 5px;
-      }
-    }
-
-    .minMax {
-
-    }
-
-    .temp {
-      font-family: ArashShoarHelveticaNeue;
+    .tempHeader {
+      align-items: flex-start;
     }
   }
 }
