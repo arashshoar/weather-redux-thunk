@@ -39,4 +39,4 @@ export const SRC = {
   // Wind
   blade: 'https://s.yimg.com/os/weather/1.0.1/windmill/blade_big@2x.png',
   pole: 'https://s.yimg.com/os/weather/1.0.1/windmill/bigpole@2x.png',
-};
+}

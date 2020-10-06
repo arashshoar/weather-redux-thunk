@@ -109,3 +109,5 @@ export const joinDesOfWeather = weather => weather.reduce(
 export const firstLetterUp = str => str[1].toUpperCase() + str.substr(2).toLocaleLowerCase()
 
 export const getDesOfWeather = weather => firstLetterUp(joinDesOfWeather(weather))
+
+export const getBackgroundsSrc = backgroundSrcSets => backgroundSrcSets[0].split(',')[5].split(' ')[1]
