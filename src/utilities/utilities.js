@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { backgroundSrcSets } from 'utilities/backgroundPathes'
 
 export const getUrl = ({ name, accessKey, locationName, token, coords, latitude, longitude }) => {
 
@@ -110,4 +111,19 @@ export const firstLetterUp = str => str[1].toUpperCase() + str.substr(2).toLocal
 
 export const getDesOfWeather = weather => firstLetterUp(joinDesOfWeather(weather))
 
-export const getBackgroundsSrc = backgroundSrcSets => backgroundSrcSets[0].split(',')[5].split(' ')[1]
+export const getBackgroundsSrc = () => {
+  const randomBackgroundIndex = Math.round(Math.random() * 100) % backgroundSrcSets.length
+
+  const clientWidth = document.documentElement.clientWidth
+  const clientHeight = document.documentElement.clientHeight
+  // const imageLength = Math.sqrt(clientHeight ** 2 + clientWidth ** 2)
+  // const imageLength = Math.max(clientHeight, clientWidth)
+  const imageLength = clientWidth
+  const imageFlavors = backgroundSrcSets[randomBackgroundIndex].split(',')
+  const imageFlavorIndex = imageFlavors.reduce((resultIndex, imageFlavor, currentIndex ) => {
+    const flavorWidth = parseInt(imageFlavor.split(' ')[2])
+    return flavorWidth > imageLength && !resultIndex ? currentIndex : resultIndex
+  }, undefined)
+
+  return backgroundSrcSets[randomBackgroundIndex].split(',')[imageFlavorIndex === undefined ? imageFlavors.length - 1 : imageFlavorIndex].split(' ')[1]
+}
