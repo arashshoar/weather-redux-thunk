@@ -2,17 +2,14 @@ import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import logger from 'redux-logger'
 import { composeWithDevTools } from 'redux-devtools-extension'
+
 import rootReducers from 'reducers/rootReducers'
-import { currentWeatherData } from 'utilities/test-utilities/mockData/currentWeatherData'
+import { storeStateIint } from 'utilities/test-utilities/mockData/storeStateInit'
 
 const enhancer = composeWithDevTools(
-  applyMiddleware(thunk, logger),
+  process.env.NODE_ENV === 'development' || 'test' ? applyMiddleware(thunk, logger) : applyMiddleware(thunk) ,
 )
 
-const initialState = {
-  currentWeatherData: currentWeatherData.data.currentWeatherData
-};
-
-const store = createStore(rootReducers, initialState, enhancer)
+const store = createStore(rootReducers, storeStateIint, enhancer)
 
 export default store

@@ -1,6 +1,8 @@
 import { CONST } from 'utilities/constants'
+import { storeStateIint } from 'utilities/test-utilities/mockData/storeStateInit'
 
-const rootReducers = (state, action) => {
+const rootReducers = (state = storeStateIint, action) => {
+
   switch (action.type) {
   case CONST.SET_COORDS:
     return {...state, coords: action.coords}
