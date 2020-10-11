@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getUsersLocation } from 'actions/actions'
 import CurrentTemp from 'components/CurrentTemp/CurrentTemp'
 import { getBackgroundsSrc } from 'utilities/utilities'
 
 import styles from './App.module.scss'
+import {getUsersLocation} from "./actions/getUsersLocation";
 
 const App = ({ getUsersLocation }) => {
 

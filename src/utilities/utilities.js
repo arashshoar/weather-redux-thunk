@@ -127,3 +127,9 @@ export const getBackgroundsSrc = () => {
 
   return backgroundSrcSets[randomBackgroundIndex].split(',')[imageFlavorIndex === undefined ? imageFlavors.length - 1 : imageFlavorIndex].split(' ')[1]
 }
+
+export const getUserCurrentPosition = options => (
+  new Promise(function (resolve, reject) {
+    navigator.geolocation.getCurrentPosition(resolve, reject, options)
+  })
+)
