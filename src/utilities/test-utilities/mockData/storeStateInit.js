@@ -1,4 +1,6 @@
 export const storeStateIint = {
+  ForC: 'f',
+  isSearchDone: false,
   cityName: 'Los Angles 2',
   countryName: 'US 2',
   currentWeatherData: {
@@ -17,4 +19,7 @@ export const storeStateIint = {
       }
     ]
   },
+  mapData: {
+    features: []
+  }
 }

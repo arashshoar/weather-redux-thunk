@@ -30,3 +30,7 @@ export const setForecastWeatherData = (forecastWeatherData) => ({
   forecastWeatherData,
 })
 
+export const setIsSearchDone = isSearchDone => ({
+  type: CONST.SET_IS_SEARCH_DONE,
+  isSearchDone,
+})

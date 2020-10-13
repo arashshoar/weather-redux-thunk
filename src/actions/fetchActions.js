@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { getFreshWeatherData, getLocationName, getStoredData, getUrl, roundCoords } from '../utilities/utilities'
-import { setCurrentWeatherData, setForecastWeatherData, setLocationName, setMapData } from './actions'
+import { getFreshWeatherData, getStoredData, getUrl, roundCoords } from '../utilities/utilities'
+import { setCurrentWeatherData, setForecastWeatherData, setMapData } from './actions'
 
 export const fetchLocations = ({ coords, locationName }) => {
 
@@ -22,9 +22,10 @@ export const fetchLocations = ({ coords, locationName }) => {
         window.localStorage.setItem('storedLocationData' + roundCoords(coords), JSON.stringify(data))
       }
       const {data: mapData} = data
-      dispatch(setLocationName(getLocationName(mapData)))
+
       dispatch(setMapData(mapData))
 
+      return mapData
     } catch (error) {
       console.log('Location Error:', error)
     }

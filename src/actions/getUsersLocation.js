@@ -1,7 +1,7 @@
-import { someCityCoords } from '../utilities/constants'
 import { getUserCurrentPosition } from 'utilities/utilities'
-import { setCoords } from './actions'
-import { fetchLocations, fetchWeather } from './fetchActions'
+import { someCityCoords } from 'utilities/constants'
+import { getWholeData } from './getWholeData'
+
 
 export const getUsersLocation = () => {
 
@@ -9,16 +9,11 @@ export const getUsersLocation = () => {
 
     try {
       const {coords: {latitude, longitude}} = await getUserCurrentPosition()
-      dispatch(fetchLocations({coords: `${longitude},${latitude}`}))
-      dispatch(fetchWeather('weatherQueryCurrent', 'storedCurrentWeatherData', latitude, longitude))
-      dispatch(fetchWeather('weatherQueryForecast', 'storedForecastWeatherData', latitude, longitude))
-      dispatch(setCoords(`${longitude},${latitude}`))
+      dispatch(getWholeData(latitude, longitude))
     } catch (error) {
       console.log('User denied to let us have access their location:', error.message)
-      dispatch(fetchLocations({coords: someCityCoords.NewYork}))
-      dispatch(fetchWeather('weatherQueryCurrent', 'storedCurrentWeatherData', '40.7648', '-73.9808'))
-      dispatch(fetchWeather('weatherQueryForecast', 'storedForecastWeatherData', '40.7648', '-73.9808'))
-      dispatch(setCoords(someCityCoords.NewYork))
+      const [longitude, latitude] = someCityCoords.NewYork.split(',')
+      dispatch(getWholeData(latitude, longitude))
     }
   }
 }

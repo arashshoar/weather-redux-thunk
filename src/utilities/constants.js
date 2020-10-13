@@ -5,6 +5,7 @@ export const CONST = {
   SET_MAP_DATA: 'SET_MAP_DATA',
   SET_CURRENT_WEATHER_DATA: 'SET_CURRENT_WEATHER_DATA',
   SET_FORECAST_WEATHER_DATA: 'SET_FORECAST_WEATHER_DATA',
+  SET_IS_SEARCH_DONE: 'SET_IS_SEARCH_DONE',
 }
 
 export const someCityCoords = {
@@ -39,4 +40,11 @@ export const SRC = {
   // Wind
   blade: 'https://s.yimg.com/os/weather/1.0.1/windmill/blade_big@2x.png',
   pole: 'https://s.yimg.com/os/weather/1.0.1/windmill/bigpole@2x.png',
+}
+
+export const KEYS = {
+  weatherQueryCurrent: 'weatherQueryCurrent',
+  weatherQueryForecast: 'weatherQueryForecast',
+  storedCurrentWeatherData: 'storedCurrentWeatherData',
+  storedForecastWeatherData: 'storedForecastWeatherData',
 }

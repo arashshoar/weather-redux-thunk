@@ -1,0 +1,8 @@
+@import 'utilities/design-utilities/sass-variables';
+
+.locationList {
+  padding: 3px 10px 0;
+  button, input {
+    font-size: $searchListFontSize;
+  }
+}

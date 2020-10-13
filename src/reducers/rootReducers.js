@@ -16,6 +16,8 @@ const rootReducers = (state = storeStateIint, action) => {
     return {...state, currentWeatherData: action.currentWeatherData}
   case CONST.SET_FORECAST_WEATHER_DATA:
     return {...state, forecastWeatherData: action.forecastWeatherData}
+  case CONST.SET_IS_SEARCH_DONE:
+    return {...state, isSearchDone: action.isSearchDone}
   default:
     return state
   }

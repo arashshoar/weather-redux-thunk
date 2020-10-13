@@ -115,7 +115,7 @@ export const getBackgroundsSrc = () => {
   const randomBackgroundIndex = Math.round(Math.random() * 100) % backgroundSrcSets.length
 
   const clientWidth = document.documentElement.clientWidth
-  const clientHeight = document.documentElement.clientHeight
+  // const clientHeight = document.documentElement.clientHeight
   // const imageLength = Math.sqrt(clientHeight ** 2 + clientWidth ** 2)
   // const imageLength = Math.max(clientHeight, clientWidth)
   const imageLength = clientWidth
@@ -133,3 +133,26 @@ export const getUserCurrentPosition = options => (
     navigator.geolocation.getCurrentPosition(resolve, reject, options)
   })
 )
+
+export const getLatLngFromCoords = coords => {
+  if (typeof (coords) === 'string') {
+    return ({
+      latitude: coords.split(',')[1],
+      longitude: coords.split(',')[0],
+    })
+  }
+
+  if (Array.isArray(coords)) {
+    return ({
+      latitude: coords[1],
+      longitude: coords[0]
+    })
+  }
+}
+
+export const getPlaceDescription = placeName => {
+  const placeNameArr = placeName.split(',')
+  const placeNameLastIndex = placeNameArr.length - 1
+
+  return placeNameArr[placeNameLastIndex]
+}
