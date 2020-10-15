@@ -1,0 +1,43 @@
+.windContainer {
+  font-size: 0.8rem;
+  display: block;
+  position: relative;
+
+  .items {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+  }
+
+  .bigGen {
+    height: 100px;
+    position: relative;
+    top: 10px;
+  }
+
+  .smallGen {
+    position: relative;
+    left: -24px;
+    height: 43px;
+    top: -13px;
+    margin-right: -20px;
+  }
+
+  .wind {
+    align-self: flex-start;
+    padding-top: 20px;
+  }
+
+  .pressure {
+    align-self: flex-end;
+  }
+
+  .border {
+    border-bottom: rgba(255, 255, 255, 0.2) dotted 1px;
+    position: absolute;
+    width: 100%;
+    height: 65%;
+    top: 0;
+  }
+}
