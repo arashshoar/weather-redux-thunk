@@ -5,7 +5,6 @@ import { getWholeData } from 'actions/getWholeData.js'
 import { getLatLngFromCoords, getPlaceDescription } from 'utilities/utilities'
 import LocationIcon from 'components/common/LocationIcon/LocationIcon'
 import LocationInput from 'components/common/LocationInput/LocationInput'
-
 import styles from './LocationList.module.scss'
 
 const handleChangeLocationList = (event, coords, getWholeData) => {

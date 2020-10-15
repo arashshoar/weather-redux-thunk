@@ -22,8 +22,8 @@ jest.mock('axios', () => {
 })
 
 import { fetchLocations, fetchWeather } from '../fetchActions'
-import { getLocationName, getUrl } from '../../utilities/utilities'
-import {setLocationName, setMapData, setCurrentWeatherData, setForecastWeatherData } from '../actions'
+import { getUrl } from 'utilities/utilities'
+import { setMapData, setCurrentWeatherData, setForecastWeatherData } from '../actions'
 
 const mapDataMock = require('utilities/test-utilities/mockData/commonJS/mapDataForAxios_CommonJS.js')
 const currentWeatherDataMock = require('utilities/test-utilities/mockData/commonJS/currentWeatherDataForAxios_CommonJS')
@@ -60,7 +60,6 @@ describe('When we are testing fetchLocations function', () => {
     expect(getUrl).toHaveBeenCalledWith(expect.objectContaining({
       coords: '12, 4'
     }))
-    expect(setLocationName).toHaveBeenCalledWith({cityName: 'San Jose', countryName: 'United States'})
     expect(setMapData).toHaveBeenCalledWith(mapDataMock.data)
   })
 
@@ -75,7 +74,6 @@ describe('When we are testing fetchLocations function', () => {
     expect(getUrl).toHaveBeenCalledWith(expect.objectContaining({
       locationName: 'New Yore'
     }))
-    expect(setLocationName).toHaveBeenCalled()
     expect(setMapData).toHaveBeenCalledWith(mapDataMock.data)
   })
 

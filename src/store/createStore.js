@@ -7,7 +7,7 @@ import rootReducers from 'reducers/rootReducers'
 import { storeStateIint } from 'utilities/test-utilities/mockData/storeStateInit'
 
 const enhancer = composeWithDevTools(
-  process.env.NODE_ENV === 'development' ? applyMiddleware(thunk, logger) : applyMiddleware(thunk) ,
+  process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test' ? applyMiddleware(thunk, logger) : applyMiddleware(thunk)
 )
 
 const store = createStore(rootReducers, storeStateIint, enhancer)

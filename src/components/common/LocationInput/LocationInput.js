@@ -5,15 +5,16 @@ import { setIsSearchDone } from 'actions/actions'
 
 import styles from './LocationInput.module.scss'
 
-const handleChangeInput = setLocationName => event => setLocationName(event.target.value);
+export const handleChangeInput = setLocationName => event => setLocationName(event.target.value);
 
-const handleKeyDown = (locationName, fetchLocations, setIsSearchDone) => event => {
+export const handleKeyDown = (locationName, fetchLocations, setIsSearchDone) => event => {
+
   if (event.key === 'Enter') {
     handleSearchButtonClick(locationName, fetchLocations, setIsSearchDone)
   }
 }
 
-const handleSearchButtonClick = (locationName, fetchLocations, setIsSearchDone) => {
+export const handleSearchButtonClick = (locationName, fetchLocations, setIsSearchDone) => {
   fetchLocations({locationName})
   setIsSearchDone(true)
 }

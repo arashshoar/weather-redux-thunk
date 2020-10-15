@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { getDateTimeFromMilSecs, getDesOfWeather } from 'utilities/utilities'
+import { setunitFC } from 'actions/actions'
 
 import LocationAndDate from './LocationAndDate/LocationAndDate'
 import LocationList from './LocationList/LocationList'
@@ -8,7 +9,7 @@ import DescriptionAndTemp from './DescriptionAndTemp/DescriptionAndTemp'
 
 import styles from './CurrentTemp.module.scss'
 
-const CurrentTemp = ({ cityName, countryName, dt, weather, maxTemp, minTemp, currentTemp }) => {
+const CurrentTemp = ({ cityName, countryName, dt, weather, maxTemp, minTemp, currentTemp, unitFC, setunitFC }) => {
   const {time, date} = getDateTimeFromMilSecs(dt)
   const description = getDesOfWeather(weather)
 
@@ -25,6 +26,8 @@ const CurrentTemp = ({ cityName, countryName, dt, weather, maxTemp, minTemp, cur
       </div>
 
       <DescriptionAndTemp
+        unitFC={unitFC}
+        setunitFC={setunitFC}
         description={description}
         maxTemp={maxTemp}
         minTemp={minTemp}
@@ -35,6 +38,7 @@ const CurrentTemp = ({ cityName, countryName, dt, weather, maxTemp, minTemp, cur
 }
 
 const mapStateToProps = state => ({
+  unitFC:state.unitFC,
   cityName: state.cityName,
   countryName: state.countryName,
   currentTemp: state.currentWeatherData.main.temp,
@@ -44,4 +48,8 @@ const mapStateToProps = state => ({
   weather: state.currentWeatherData.weather,
 })
 
-export default connect(mapStateToProps, null)(CurrentTemp)
+const mapDispatchToProps = dispatch => ({
+  setunitFC: unitFC => dispatch(setunitFC(unitFC))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CurrentTemp)

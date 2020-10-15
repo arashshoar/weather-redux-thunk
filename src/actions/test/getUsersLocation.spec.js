@@ -4,14 +4,15 @@ jest.mock('utilities/utilities', () => {
   return {
     ...rest,
     getUserCurrentPosition: jest.fn()
-      .mockImplementationOnce(() => Promise.resolve({coords: {latitude: 37.3118288, longitude: -121.9770887}}))
+      .mockImplementationOnce(() => Promise.resolve({coords: {latitude: '37.3118288', longitude: '-121.9770887'}}))
       .mockImplementationOnce(() => new Error('User deny to get use their location'))
   }
 })
 
 jest.mock('../actions')
+jest.mock('../getWholeData')
 
-import { setCoords } from '../actions'
+import { getWholeData } from  '../getWholeData'
 import { getUsersLocation } from '../getUsersLocation'
 import { someCityCoords } from 'utilities/constants'
 
@@ -22,15 +23,17 @@ function flushPromise() {
 describe('When we are testing getUsersLocation', () => {
 
   it('if user let us to get his location gives us their location', async () => {
+    const [longitude, latitude] = someCityCoords.SanJose.split(',')
     getUsersLocation()(jest.fn())
     await flushPromise()
-    expect(setCoords).toHaveBeenCalledWith(someCityCoords.SanJose)
+    expect(getWholeData).toHaveBeenCalledWith(latitude, longitude)
   })
 
   it('if user doesn\'t let us to access their location gives us default which is New York\'s', async () => {
     jest.clearAllMocks()
+    const [longitude, latitude] = someCityCoords.NewYork.split(',')
     getUsersLocation()(jest.fn())
     await flushPromise()
-    expect(setCoords).toHaveBeenCalledWith(someCityCoords.NewYork)
+    expect(getWholeData).toHaveBeenCalledWith(latitude, longitude)
   })
 })

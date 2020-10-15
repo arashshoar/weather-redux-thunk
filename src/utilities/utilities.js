@@ -156,3 +156,9 @@ export const getPlaceDescription = placeName => {
 
   return placeNameArr[placeNameLastIndex]
 }
+
+export const getTemp = (unitFC, fTemp) => unitFC === 'f' ? Math.round(fTemp) : Math.round((fTemp - 32) * (5/9))
+
+// export const setLocalStorage = (key, value) => window.localStorage.setItem(key, JSON.stringify(value))
+
+// export const getLocalStorage = key => JSON.parse(window.localStorage.getItem(key))
