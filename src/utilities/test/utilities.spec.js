@@ -42,11 +42,11 @@ describe('When we test utilities functions', () => {
   })
 
   it('getLocationName gives us both cityName and countryName out of mapData', () => {
-    expect(getLocationName(mapData)).toEqual({cityName: 'San Jose', countryName: 'United States'})
+    expect(getLocationName(mapData)).toEqual({ cityName: 'San Jose', countryName: 'United States' })
     mapData.features[0]['place_type'] = 'address'
-    expect(getLocationName(mapData)).toEqual({cityName: 'San Fransisco', countryName: 'United States'})
+    expect(getLocationName(mapData)).toEqual({ cityName: 'San Fransisco', countryName: 'United States' })
     mapData.features[1]['place_type'] = 'address'
     mapData.features[2]['place_type'] = 'address'
-    expect(getLocationName(mapData)).toEqual({cityName: 'United States', countryName: 'United States'})
+    expect(getLocationName(mapData)).toEqual({ cityName: 'United States', countryName: 'United States' })
   })
 })

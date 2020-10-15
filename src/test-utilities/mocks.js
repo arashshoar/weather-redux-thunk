@@ -30,7 +30,7 @@ export const geolocationMock = {
     )
     .mockImplementation(
       (res, rej, options) => {
-        res({coords: {latitude: 37.3118288, longitude: -121.9770887}})
+        res({ coords: { latitude: 37.3118288, longitude: -121.9770887 } })
       }
     )
 }

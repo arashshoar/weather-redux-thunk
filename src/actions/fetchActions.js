@@ -21,7 +21,7 @@ export const fetchLocations = ({ coords, locationName }) => {
       if (coords) {
         window.localStorage.setItem('storedLocationData' + roundCoords(coords), JSON.stringify(data))
       }
-      const {data: mapData} = data
+      const { data: mapData } = data
 
       dispatch(setMapData(mapData))
 

@@ -25,7 +25,7 @@ const storeForTests = (
     process.env.NODE_ENV === 'test' && activeLogger ? applyMiddleware(thunk, logger) : applyMiddleware(thunk)
   )
 
-  return createStore(rootReducers, {isSearchDone, cityName, countryName , currentWeatherData, mapData, unitFC, coords, forecastWeatherData}, enhancer )
+  return createStore(rootReducers, { isSearchDone, cityName, countryName , currentWeatherData, mapData, unitFC, coords, forecastWeatherData }, enhancer )
 }
 
 export default storeForTests

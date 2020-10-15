@@ -1,20 +1,20 @@
+import { getWholeData } from  '../getWholeData'
+import { getUsersLocation } from '../getUsersLocation'
+import { someCityCoords } from 'utilities/constants'
+
 jest.mock('utilities/utilities', () => {
   const rest = jest.requireActual('utilities/utilities')
 
   return {
     ...rest,
     getUserCurrentPosition: jest.fn()
-      .mockImplementationOnce(() => Promise.resolve({coords: {latitude: '37.3118288', longitude: '-121.9770887'}}))
+      .mockImplementationOnce(() => Promise.resolve({ coords: { latitude: '37.3118288', longitude: '-121.9770887' } }))
       .mockImplementationOnce(() => new Error('User deny to get use their location'))
   }
 })
 
 jest.mock('../actions')
 jest.mock('../getWholeData')
-
-import { getWholeData } from  '../getWholeData'
-import { getUsersLocation } from '../getUsersLocation'
-import { someCityCoords } from 'utilities/constants'
 
 function flushPromise() {
   return new Promise(resolve => setTimeout(resolve, 0))

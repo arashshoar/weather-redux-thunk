@@ -8,7 +8,7 @@ export const getUsersLocation = () => {
   return async dispatch => {
 
     try {
-      const {coords: {latitude, longitude}} = await getUserCurrentPosition()
+      const { coords: { latitude, longitude } } = await getUserCurrentPosition()
       dispatch(checkForStoredUnit())
       dispatch(getWholeData(latitude, longitude))
     } catch (error) {

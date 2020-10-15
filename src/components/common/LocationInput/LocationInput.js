@@ -1,11 +1,11 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from 'react'
+import { connect } from 'react-redux'
 import { fetchLocations } from 'actions/fetchActions'
 import { setIsSearchDone } from 'actions/actions'
 
 import styles from './LocationInput.module.scss'
 
-export const handleChangeInput = setLocationName => event => setLocationName(event.target.value);
+export const handleChangeInput = setLocationName => event => setLocationName(event.target.value)
 
 export const handleKeyDown = (locationName, fetchLocations, setIsSearchDone) => event => {
 
@@ -15,12 +15,12 @@ export const handleKeyDown = (locationName, fetchLocations, setIsSearchDone) => 
 }
 
 export const handleSearchButtonClick = (locationName, fetchLocations, setIsSearchDone) => {
-  fetchLocations({locationName})
+  fetchLocations({ locationName })
   setIsSearchDone(true)
 }
 
 const LocationInput = ({ fetchLocations, setIsSearchDone }) => {
-  const [locationName, setLocationName] = React.useState('');
+  const [locationName, setLocationName] = React.useState('')
   return (
     <>
       <div className={`input-group mb-3 ${styles.locationList}`}>
@@ -50,7 +50,7 @@ const LocationInput = ({ fetchLocations, setIsSearchDone }) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  fetchLocations: ({locationName, coords}) => dispatch(fetchLocations({locationName, coords})),
+  fetchLocations: ({ locationName, coords }) => dispatch(fetchLocations({ locationName, coords })),
   setIsSearchDone: isSearchDone => dispatch(setIsSearchDone(isSearchDone))
 })
 

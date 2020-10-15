@@ -1,9 +1,7 @@
 import React from 'react'
 import { shallow, mount } from 'enzyme'
-import Root from 'Root'
 
 import DescriptionAndTemp from '../DescriptionAndTemp'
-import {localStorageMock} from "../../../../test-utilities/mocks";
 
 describe('When we test DescriptionAndTemp', () => {
   let wrapper

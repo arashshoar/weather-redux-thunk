@@ -1,3 +1,7 @@
+import { fetchLocations, fetchWeather } from '../fetchActions'
+import { getUrl } from 'utilities/utilities'
+import { setMapData, setCurrentWeatherData, setForecastWeatherData } from '../actions'
+
 jest.mock('axios', () => {
 
   const mapDataForAxios = require('utilities/test-utilities/mockData/commonJS/mapDataForAxios_CommonJS.js')
@@ -20,10 +24,6 @@ jest.mock('axios', () => {
     get: getAxiosMockImplementation()
   })
 })
-
-import { fetchLocations, fetchWeather } from '../fetchActions'
-import { getUrl } from 'utilities/utilities'
-import { setMapData, setCurrentWeatherData, setForecastWeatherData } from '../actions'
 
 const mapDataMock = require('utilities/test-utilities/mockData/commonJS/mapDataForAxios_CommonJS.js')
 const currentWeatherDataMock = require('utilities/test-utilities/mockData/commonJS/currentWeatherDataForAxios_CommonJS')
@@ -53,7 +53,7 @@ function flushPromise() {
 describe('When we are testing fetchLocations function', () => {
   it('if we call it with coordinates it sets location and mapData ',  async () => {
 
-    fetchLocations({coords: '12, 4'})(jest.fn())
+    fetchLocations({ coords: '12, 4' })(jest.fn())
     await flushPromise()
 
     expect(getUrl).toHaveBeenCalled()
@@ -67,7 +67,7 @@ describe('When we are testing fetchLocations function', () => {
   it('if we call it without coordinates it sets location and mapData base on location query ',  async () => {
     jest.clearAllMocks()
 
-    fetchLocations({coords: undefined, locationName: 'New Yore'})(jest.fn())
+    fetchLocations({ coords: undefined, locationName: 'New Yore' })(jest.fn())
     await flushPromise()
 
     expect(getUrl).toHaveBeenCalled()

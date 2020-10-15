@@ -10,7 +10,7 @@ import DescriptionAndTemp from './DescriptionAndTemp/DescriptionAndTemp'
 import styles from './CurrentTemp.module.scss'
 
 const CurrentTemp = ({ cityName, countryName, dt, weather, maxTemp, minTemp, currentTemp, unitFC, setunitFC }) => {
-  const {time, date} = getDateTimeFromMilSecs(dt)
+  const { time, date } = getDateTimeFromMilSecs(dt)
   const description = getDesOfWeather(weather)
 
   return (
@@ -38,7 +38,7 @@ const CurrentTemp = ({ cityName, countryName, dt, weather, maxTemp, minTemp, cur
 }
 
 const mapStateToProps = state => ({
-  unitFC:state.unitFC,
+  unitFC: state.unitFC,
   cityName: state.cityName,
   countryName: state.countryName,
   currentTemp: state.currentWeatherData.main.temp,

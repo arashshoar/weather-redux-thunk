@@ -1,5 +1,4 @@
 import React from 'react'
-
 import { SRC } from 'utilities/constants'
 import { getTemp } from 'utilities/utilities'
 import UpArrowIcon from 'components/common/UpArrowIcon'

@@ -1,6 +1,6 @@
 import { getWholeData } from '../getWholeData'
 import { fetchLocations, fetchWeather } from '../fetchActions'
-import {setCoords} from "../actions";
+import { setCoords } from '../actions'
 
 jest.mock('../fetchActions', () => {
   const mapData = require('utilities/test-utilities/mockData/mapDataForAxios.js')
@@ -15,7 +15,9 @@ jest.mock('utilities/utilities', () => {
 
   return ({
     ...rest,
-    getLocationName: jest.fn(() => ({cityName: 'New York', countryName: 'US'}))
+    getLocationName: jest.fn(() => ({
+      cityName: 'New York', countryName: 'US'
+    }))
   })
 })
 

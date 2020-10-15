@@ -25,8 +25,6 @@ Object.defineProperty(window, 'localStorage', {
 describe('When we are testing App component', () => {
   let wrapper
 
-  const getStore = App => App.find('Provider').prop('store').getState()
-
   wrapper = () => mount(<Root><App/></Root>)
 
   it('Should run the test file', () => {

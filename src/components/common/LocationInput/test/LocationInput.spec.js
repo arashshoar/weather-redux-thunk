@@ -11,7 +11,7 @@ jest.mock('actions/fetchActions', () => {
 
   return ({
     ...rest,
-    fetchLocations: jest.fn().mockImplementation(() => ({type: '', payload: ''}))
+    fetchLocations: jest.fn().mockImplementation(() => ({ type: '', payload: '' }))
   })
 })
 
@@ -20,7 +20,7 @@ jest.mock('actions/actions', () => {
 
   return ({
     ...rest,
-    setIsSearchDone: jest.fn().mockImplementation(() => ({type: '', payload: ''}))
+    setIsSearchDone: jest.fn().mockImplementation(() => ({ type: '', payload: '' }))
   })
 })
 
@@ -29,7 +29,7 @@ describe('When we are testing the LocationInput component', () => {
 
   it('check if controlled input is working fine', () => {
     wapper = mount(<RootForTests><LocationInput /></RootForTests>)
-    wapper.find('input').simulate('change', {target: {value: 'Salam all my Friends'}})
+    wapper.find('input').simulate('change', { target: { value: 'Salam all my Friends' } })
     expect(wapper.find('input').prop('value')).toBe('Salam all my Friends')
   })
 
@@ -42,7 +42,7 @@ describe('When we are testing the LocationInput component', () => {
 
   it('when user enter new search term in location input store getting fresh data for application', () => {
     wapper = mount(<RootForTests><LocationInput /></RootForTests>)
-    wapper.find('input').simulate('keyDown', {key: 'Enter'})
+    wapper.find('input').simulate('keyDown', { key: 'Enter' })
     expect(setIsSearchDone).toHaveBeenCalledWith(true)
     expect(fetchLocations).toHaveBeenCalled()
   })

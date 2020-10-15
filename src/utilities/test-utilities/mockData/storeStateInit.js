@@ -1,6 +1,6 @@
 export const storeStateIint = {
   isSearchDone: false,
-  cityName: 'Los Angles 2',
+  cityName: 'Data is loading...',
   countryName: 'US 2',
   currentWeatherData: {
     main: {

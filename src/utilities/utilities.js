@@ -22,7 +22,7 @@ export const getUrl = ({ name, accessKey, locationName, token, coords, latitude,
 export const roundCoords = coords => coords.split(',').map(elem => Math.round(elem * 100)/100).join(',')
 
 export const getLocationName = mapData => {
-  const {features: places} = mapData
+  const { features: places } = mapData
   let cityName
   let countryName
 
@@ -67,7 +67,7 @@ const getRoundLatLng = (latitude, longitude) => {
   const roundLat = Math.round(latitude * 100) / 100
   const roundLng = Math.round(longitude * 100) / 100
 
-  return ({roundLat, roundLng})
+  return ({ roundLat, roundLng })
 }
 
 export const getStoredData = (storeKey, latitude, longitude) => {
