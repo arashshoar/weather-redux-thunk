@@ -47,6 +47,7 @@
   }
 
   @media only screen and (min-width: $mdBreakPoint ) {
+    grid-template-columns: 50% 50%;
     grid-template-areas:
             "currentTempContainer currentTempContainer"
             "links links"
@@ -58,6 +59,7 @@
   @media only screen and (min-width: $xlBreakPoint ) {
     margin: auto;
     min-width: 1200px;
+    grid-template-columns: 20% 20% 20% 20% 20%;
     grid-template-areas:
             "asideContainer currentTempContainer currentTempContainer currentTempContainer currentTempContainer"
             "asideContainer links links links links"

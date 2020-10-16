@@ -1,0 +1,84 @@
+@import 'utilities/design-utilities/sass-variables';
+
+.sunMoon {
+  max-width: 500px;
+  position: relative;
+  padding-bottom: 20px;
+  display: flex;
+
+  .sunMoonContainer {
+    padding: 0 36px 0;
+    border: solid $sunYellowTransparency;
+    border-width: 0 0 1px 0;
+    transform: scale(1, .9);
+  }
+
+  .tableContainer {
+    font-size: 0.8rem;
+    padding-top: 24px;
+  }
+
+  .svgContainer {
+    position: relative;
+    width: 200px;
+    height: 100px;
+    padding: 0 20px;
+
+    .arcStroke {
+      position: absolute;
+      left: 0;
+      top: 0;
+
+      circle {
+        stroke-dasharray: 6px;
+        stroke: $sunYellow;
+        stroke-width: 1px;
+        fill: rgba(0, 0, 0, 0);
+      }
+    }
+
+    .arcFill {
+      position: absolute;
+      left: 0;
+      top: 0;
+
+      circle {
+        position: absolute;
+        fill: $sunYellowTransparency;
+        stroke: rgba(0, 0, 0, 0);
+      }
+    }
+
+    .clearDayIcon {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+    }
+
+    .dotLeft, .dotRight {
+      position: absolute;
+      fill: $sunYellow;
+      stroke-width: 0;
+      left: -2px;
+      top: 97px;
+    }
+
+    .dotRight {
+      left: 196px;
+      top: 97px;
+    }
+
+    .sunRise, .sunSet {
+      width: max-content;
+      font-size: 0.7rem;
+      position: absolute;
+      left: -12px;
+      top: 110px;
+    }
+
+    .sunSet {
+      left: 175px;
+      top: 110px;
+    }
+  }
+}

@@ -9,7 +9,8 @@ export const storeStateIint = {
       temp_min: 3,
     },
     dt: '000000000',
-    wind: '',
+    wind: {},
+    sys: {},
     weather: [
       {
         description: 'smoke'

@@ -6,6 +6,8 @@ const currentWeatherDataForAxios = {
       temp_min: 3,
     },
     dt: '000000000',
+    wind: {},
+    sys: {},
     weather: [
       {
         description: 'smoke'

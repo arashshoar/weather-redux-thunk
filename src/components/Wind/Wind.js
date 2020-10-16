@@ -19,11 +19,11 @@ const Wind = ({ windSpeed, pressure, windDegree }) => {
           </div>
           <div className={styles.wind}>
             <div>Wind</div>
-            <div>{`${windSpeed} mph`}</div>
+            <div>{`${windSpeed ? windSpeed : 'loading'} mph`}</div>
           </div>
           <div className={styles.pressure}>
             <div>Barometer</div>
-            <div>{`${pressure} inches`}</div>
+            <div>{`${pressure ? pressure : 'loading'} inches`}</div>
           </div>
         </div>
         <div className={styles.border}></div>

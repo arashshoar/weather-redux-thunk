@@ -5,6 +5,7 @@ import CurrentTemp from 'components/CurrentTemp/CurrentTemp'
 import { getUsersLocation } from 'actions/getUsersLocation'
 import { getBackgroundsSrc } from 'utilities/utilities'
 import Wind from 'components/Wind/Wind'
+import SunMoon from 'components/SunMoon/SunMoon'
 
 import styles from './App.module.scss'
 
@@ -31,7 +32,9 @@ const App = ({ getUsersLocation }) => {
         <Wind />
         <button onClick={getUsersLocation}>Fetch</button>
       </div>
-      <div className={styles.componentsSetTwo}></div>
+      <div className={styles.componentsSetTwo}>
+        <SunMoon />
+      </div>
 
     </div>
   )

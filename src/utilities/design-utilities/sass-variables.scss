@@ -11,6 +11,14 @@ $xlBreakPoint: 1200px;
 
 $searchListFontSize: 0.9rem;
 
+$sunYellow: rgba(255, 193, 7, 1);
+$sunYellowTransparency: rgba(255, 193, 7, 0.25);
+$portfolioIcon: #e8ae00;
+//this one is real blue
+$linksBlue: #a5d6ff;
+// this one is yellow for color consistency with my portfolio
+//$linksBlue: #b99128;
+
 @font-face {
   font-family: ArashShoarHelveticaNeue;
   src: url('../../assets/fonts/HelveticaNeue-UltLt.otf');
