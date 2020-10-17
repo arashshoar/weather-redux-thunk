@@ -7,7 +7,7 @@ import { currentWeatherDataForAxios } from 'utilities/test-utilities/mockData/cu
 describe('When we test SunMoon', () => {
   let wrapper
 
-  it('', () => {
+  it('When application is getting data from web services the component shows loading instead of information', () => {
 
     wrapper = mount(
       <RootForTests>
@@ -19,7 +19,7 @@ describe('When we test SunMoon', () => {
   })
 
 
-  it('', () => {
+  it('When application is getting data from web services the component shows loading instead of information', () => {
 
     currentWeatherDataForAxios.data.wind.speed = 100
     currentWeatherDataForAxios.data.main.pressure = 500

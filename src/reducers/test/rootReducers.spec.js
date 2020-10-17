@@ -1,5 +1,5 @@
 import rootReducers from '../rootReducers'
-import { setCoords, setMapData, setCurrentWeatherData, setLocationName, setFoundLocations, setIsSearchDone, setunitFC, setForecastWeatherData } from 'actions/actions'
+import { setCoords, setMapData, setCurrentWeatherData, setLocationName, setFoundLocations, setIsSearchDone, setUnitFC, setForecastWeatherData } from 'actions/actions'
 import { storeStateIint } from 'utilities/test-utilities/mockData/storeStateInit'
 
 describe('When we are testing rootReducers', () => {
@@ -41,6 +41,6 @@ describe('When we are testing rootReducers', () => {
   })
 
   it('Should should return the default state as hello = Salam', () => {
-    expect(rootReducers({}, setunitFC('c'))).toEqual({ unitFC: 'c' })
+    expect(rootReducers({}, setUnitFC('c'))).toEqual({ unitFC: 'c' })
   })
 })

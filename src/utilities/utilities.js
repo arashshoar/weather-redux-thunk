@@ -93,14 +93,14 @@ export const getFreshWeatherData = async (weatherQueryKey, storeKey, latitude, l
   return data.data
 }
 
-export const getDateTimeFromMilSecs = miliSec => {
-  const localDate = new Date(Number(miliSec + '000'))
-  let [localTime, AMPM] = localDate.toLocaleTimeString().split(' ')
-
-  return {
-    time: `${localTime.split(':').slice(0, 2).join(':')} ${AMPM}`,
-    date: `${localDate.getMonth()}/${localDate.getDate()}`
+export const getDateFromMilSeconds = (milli, timeZone) => {
+  if (!milli) {
+    return 'loading'
   }
+
+  const date = new Date(Number(milli + '000') + Number(timeZone + '000'))
+  const [year, month, day] = date.toISOString().split('T')[0].split('-')
+  return `${month[0] === '0' ? month.substr(1) : month}/${day[0] === '0' ? day.substr(1) : day }`
 }
 
 export const joinDesOfWeather = weather => weather.reduce(
@@ -137,8 +137,8 @@ export const getUserCurrentPosition = options => (
 export const getLatLngFromCoords = coords => {
   if (typeof (coords) === 'string') {
     return ({
-      latitude: coords.split(',')[1],
-      longitude: coords.split(',')[0],
+      latitude: Number(coords.split(',')[1]),
+      longitude: Number(coords.split(',')[0]),
     })
   }
 
@@ -158,6 +158,31 @@ export const getPlaceDescription = placeName => {
 }
 
 export const getTemp = (unitFC, fTemp) => unitFC === 'f' ? Math.round(fTemp) : Math.round((fTemp - 32) * (5/9))
+
+export const getDayHours = (sunRise, sunSet) => {
+  const hours = Math.round(((sunSet + '000') - (sunRise + '000')) / 360000) / 10
+
+  return isNaN(hours) ? 'Loading' : hours
+}
+
+export const getTimeFromMilliSeconds = (milli, timeZone) => {
+  if (!milli) {
+    return 'loading'
+  }
+
+  const date = new Date(Number(milli + '000') + Number(timeZone + '000'))
+  const time = date.toISOString().split('T')[1].split(':')
+  return `${time[0][0] === '0' ? time[0].substr(1) : time[0]}:${time[1]}`
+}
+
+export const getQuarter = ({ sunRise, sunSet, dt }) => {
+  const sunRiseMilliSeconds = Number(sunRise + '000')
+  const sunSetMilliSeconds = Number(sunSet + '000')
+  const currentMilliSeconds = Number(dt + '000')
+  const dayQuarter = (sunRiseMilliSeconds - currentMilliSeconds) / (sunRiseMilliSeconds - sunSetMilliSeconds)
+
+  return Math.round(dayQuarter * 100) / 100
+}
 
 // export const setLocalStorage = (key, value) => window.localStorage.setItem(key, JSON.stringify(value))
 

@@ -5,7 +5,7 @@ import DescriptionAndTemp from '../DescriptionAndTemp'
 
 describe('When we test DescriptionAndTemp', () => {
   let wrapper
-  let setunitFCMock = jest.fn()
+  let setUnitFCMock = jest.fn()
 
   const compProps = (unitFC = 'f') => ({
     description: 'Clear',
@@ -13,7 +13,7 @@ describe('When we test DescriptionAndTemp', () => {
     minTemp: 1,
     currentTemp: 12,
     unitFC,
-    setunitFC: setunitFCMock
+    setUnitFC: setUnitFCMock
   })
 
   Object.defineProperty(window, 'beforeunload', {
@@ -39,13 +39,13 @@ describe('When we test DescriptionAndTemp', () => {
     wrapper = mount(<DescriptionAndTemp {...compProps()} />)
     expect(wrapper.props().unitFC).toEqual('f')
     wrapper.find('[className*="celc"]').simulate('click')
-    expect(setunitFCMock).toHaveBeenCalledWith('c')
+    expect(setUnitFCMock).toHaveBeenCalledWith('c')
   })
 
   it('when current unit it is Celcius if we click on C button it\' going to change to Farenheit', () => {
     wrapper = mount(<DescriptionAndTemp {...compProps('c')} />)
     expect(wrapper.props().unitFC).toEqual('c')
     wrapper.find('[className*="faren"]').simulate('click')
-    expect(setunitFCMock).toHaveBeenCalledWith('f')
+    expect(setUnitFCMock).toHaveBeenCalledWith('f')
   })
 })

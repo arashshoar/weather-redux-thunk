@@ -5,7 +5,7 @@ export const currentWeatherDataForAxios = {
       temp_max: 14,
       temp_min: 3,
     },
-    dt: '000000000',
+    dt: '',
     wind: {},
     sys: {},
     weather: [

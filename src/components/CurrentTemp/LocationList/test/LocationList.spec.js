@@ -22,7 +22,6 @@ describe('When testing LocationList', () => {
 
   it('If the isSearchDon be default it has to have no item in the list', () => {
     wrapper = mount(<RootForTests><LocationList /></RootForTests>)
-    console.warn(wrapper.find('a').debug())
     expect(wrapper.find('a')).toHaveLength(0)
   })
 

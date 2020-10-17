@@ -6,7 +6,7 @@ import DownArrowIcon from 'components/common/DownArrowIcon'
 
 import styles from './DescriptionAndTemp.module.scss'
 
-const DescriptionAndTemp = ({ description, maxTemp, minTemp, currentTemp, unitFC, setunitFC }) => {
+const DescriptionAndTemp = ({ description, maxTemp, minTemp, currentTemp, unitFC, setUnitFC }) => {
 
   React.useEffect(() => {
     if (unitFC) {
@@ -30,8 +30,8 @@ const DescriptionAndTemp = ({ description, maxTemp, minTemp, currentTemp, unitFC
       <div className={styles.tempAndUnits}>
         <div className={styles.temp}>{getTemp(unitFC, currentTemp)}&deg;</div>
         <div className={styles.units}>
-          <div className={`${styles.celc} ${unitFC === 'f' && styles.notCurrent}`} onClick={() => unitFC === 'f' && setunitFC('c')} >C</div>
-          <div className={`${styles.faren} ${unitFC === 'c' && styles.notCurrent}`} onClick={() => unitFC === 'c' && setunitFC('f')}>F</div>
+          <div className={`${styles.celc} ${unitFC === 'f' && styles.notCurrent}`} onClick={() => unitFC === 'f' && setUnitFC('c')} >C</div>
+          <div className={`${styles.faren} ${unitFC === 'c' && styles.notCurrent}`} onClick={() => unitFC === 'c' && setUnitFC('f')}>F</div>
         </div>
       </div>
     </div>

@@ -29,11 +29,11 @@ const App = ({ getUsersLocation }) => {
       </div>
       <div className={styles.links}></div>
       <div className={styles.componentsSetOne}>
-        <Wind />
+        <SunMoon />
         <button onClick={getUsersLocation}>Fetch</button>
       </div>
       <div className={styles.componentsSetTwo}>
-        <SunMoon />
+        <Wind />
       </div>
 
     </div>

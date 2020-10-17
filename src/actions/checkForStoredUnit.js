@@ -1,13 +1,13 @@
-import { setunitFC } from './actions'
+import { setUnitFC } from './actions'
 
 export const checkForStoredUnit = () => dispatch => {
   const storedunitFC = window.localStorage.getItem('storedunitFC')
 
   if (storedunitFC !== 'undefined' && storedunitFC) {
-    dispatch(setunitFC(storedunitFC))
+    dispatch(setUnitFC(storedunitFC))
   }
 
   if(!storedunitFC) {
-    dispatch(setunitFC('f'))
+    dispatch(setUnitFC('f'))
   }
 }

@@ -1,35 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import { getDayHours, getTimeFromMilliSeconds, getQuarter } from 'utilities/utilities'
 import GadgetContainer from 'components/common/GadgetContainer/GadgetContainer'
 import SunLocation from './SunLocation'
 import MoonIcon from './MoonIcon'
 
 import styles from './SunMoon.module.scss'
-
-const getDayHours = (sunRise, sunSet) => {
-  const hours = Math.round(((sunSet + '000') - (sunRise + '000')) / 360000) / 10
-
-  return isNaN(hours) ? 'Loading' : hours
-}
-
-const getTimeFromMilliSeconds = (milli, timeZoon) => {
-  if (!milli) {
-    return 'loading'
-  }
-  const date = new Date(Number(milli + '000') + Number(timeZoon + '000'))
-  const time = date.toISOString().split('T')[1].split(':')
-  return time[0] + ':' + time[1]
-}
-
-const getQuarter = ({ sunRise, sunSet, dt }) => {
-  const sunRiseMilliSeconds = Number(sunRise + '000')
-  const sunSetMilliSeconds = Number(sunSet + '000')
-  const currentMilliSeconds = Number(dt + '000')
-  const dayQuarter = (sunRiseMilliSeconds - currentMilliSeconds) / (sunRiseMilliSeconds - sunSetMilliSeconds)
-
-  return Math.round(dayQuarter * 100) / 100
-}
 
 const SunMoon = ({ sunRise, sunSet, dt, timeZone }) => {
   const dayQuarter = getQuarter({ sunRise, sunSet, dt })

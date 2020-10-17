@@ -1,4 +1,18 @@
-import { getUrl, getLocationName } from '../utilities'
+import {
+  getUrl,
+  getLocationName,
+  isStoredDataFresh,
+  getStoredData,
+  getBackgroundsSrc,
+  getLatLngFromCoords,
+  getDateFromMilSeconds
+} from '../utilities'
+import { localStorageMock } from 'test-utilities/mocks'
+
+Object.defineProperty(window, 'localStorage', {
+  value: new localStorageMock(),
+})
+
 
 describe('When we test utilities functions', () => {
   const options = {
@@ -48,5 +62,48 @@ describe('When we test utilities functions', () => {
     mapData.features[1]['place_type'] = 'address'
     mapData.features[2]['place_type'] = 'address'
     expect(getLocationName(mapData)).toEqual({ cityName: 'United States', countryName: 'United States' })
+  })
+
+  it('isStoredDataFresh should return true if storage time less than on hour', () => {
+    const now = new Date()
+    const storageTime = new Date()
+    storageTime.setMinutes(now.getMinutes() - 59)
+
+    expect(isStoredDataFresh(storageTime)).toBe(true)
+  })
+
+  it('isStoredDataFresh should return false if storage time grater than on hour', () => {
+    const now = new Date()
+    const storageTime = new Date()
+    storageTime.setMinutes(now.getMinutes() - 60)
+
+    expect(isStoredDataFresh(storageTime)).toBe(false)
+  })
+
+  it('If we have an stored data in localStorage the getStoredData should return that to us', () => {
+    window.localStorage.setItem('storedCurrentWeatherData37.31-121.98', JSON.stringify({ data: { weather: 'Very Hot' } }))
+    window.localStorage.setItem('storedCurrentWeatherDataTime37.31-121.98', JSON.stringify(new Date().getTime()))
+    expect(getStoredData('storedCurrentWeatherData', '37.31', '-121.98')).toEqual({ weather: 'Very Hot' })
+  })
+
+  it('getBackgroundsSrc should return an image from unsplash.com', () => {
+    expect(getBackgroundsSrc()).toContain('https://images.unsplash.com/photo')
+  })
+
+  it('getLatLngFromCoords should works with both String and Array arguments', () => {
+    expect(getLatLngFromCoords('110,12')).toEqual({ latitude: 12, longitude: 110 })
+    expect(getLatLngFromCoords([110, 12])).toEqual({ latitude: 12, longitude: 110 })
+  })
+
+  it('getDateFromMilSeconds gives us proper date format', () => {
+    let date = new Date('01/05/2020').getTime().toString().substr(0, 10)
+    let date2 = new Date('10/05/2020').getTime().toString().substr(0, 10)
+    let date3 = new Date('08/12/2020').getTime().toString().substr(0, 10)
+    let date4 = new Date('12/12/2020').getTime().toString().substr(0, 10)
+
+    expect(getDateFromMilSeconds(date, 0)).toEqual('1/5')
+    expect(getDateFromMilSeconds(date2, 0)).toEqual('10/5')
+    expect(getDateFromMilSeconds(date3, 0)).toEqual('8/12')
+    expect(getDateFromMilSeconds(date4, 0)).toEqual('12/12')
   })
 })

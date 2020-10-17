@@ -35,7 +35,7 @@ export const setIsSearchDone = isSearchDone => ({
   isSearchDone,
 })
 
-export const setunitFC = unitFC => ({
+export const setUnitFC = unitFC => ({
   type: CONST.SET_UNIT_CF,
   unitFC
 })

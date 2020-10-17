@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getDateTimeFromMilSecs, getDesOfWeather } from 'utilities/utilities'
-import { setunitFC } from 'actions/actions'
+import { getDateFromMilSeconds, getDesOfWeather, getTimeFromMilliSeconds } from 'utilities/utilities'
+import { setUnitFC } from 'actions/actions'
 
 import LocationAndDate from './LocationAndDate/LocationAndDate'
 import LocationList from './LocationList/LocationList'
@@ -9,9 +9,10 @@ import DescriptionAndTemp from './DescriptionAndTemp/DescriptionAndTemp'
 
 import styles from './CurrentTemp.module.scss'
 
-const CurrentTemp = ({ cityName, countryName, dt, weather, maxTemp, minTemp, currentTemp, unitFC, setunitFC }) => {
-  const { time, date } = getDateTimeFromMilSecs(dt)
+const CurrentTemp = ({ cityName, countryName, dt, weather, maxTemp, minTemp, currentTemp, unitFC, setUnitFC, timeZone }) => {
+  const date = getDateFromMilSeconds(dt, timeZone)
   const description = getDesOfWeather(weather)
+  const placeTime = getTimeFromMilliSeconds(dt, timeZone)
 
   return (
     <div className={styles.currentTemp}>
@@ -20,14 +21,14 @@ const CurrentTemp = ({ cityName, countryName, dt, weather, maxTemp, minTemp, cur
           cityName={cityName}
           countryName={countryName}
           date={date}
-          time={time}
+          time={placeTime}
         />
         <LocationList />
       </div>
 
       <DescriptionAndTemp
         unitFC={unitFC}
-        setunitFC={setunitFC}
+        setUnitFC={setUnitFC}
         description={description}
         maxTemp={maxTemp}
         minTemp={minTemp}
@@ -45,11 +46,12 @@ const mapStateToProps = state => ({
   maxTemp: state.currentWeatherData.main.temp_max,
   minTemp: state.currentWeatherData.main.temp_min,
   dt: state.currentWeatherData.dt,
+  timeZone: state.currentWeatherData.timezone,
   weather: state.currentWeatherData.weather,
 })
 
 const mapDispatchToProps = dispatch => ({
-  setunitFC: unitFC => dispatch(setunitFC(unitFC))
+  setUnitFC: unitFC => dispatch(setUnitFC(unitFC))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CurrentTemp)
