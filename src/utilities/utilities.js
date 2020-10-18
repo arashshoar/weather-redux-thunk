@@ -4,18 +4,18 @@ import { backgroundSrcSets } from 'utilities/backgroundPathes'
 export const getUrl = ({ name, accessKey, locationName, token, coords, latitude, longitude }) => {
 
   switch (name) {
-  case 'coordsQuery':
-    return `https://api.mapbox.com/geocoding/v5/mapbox.places/${coords}.json?access_token=${token}`
-  case 'locationNameQuery':
-    return `https://api.mapbox.com/geocoding/v5/mapbox.places/${locationName}.json?access_token=${token}`
-  case 'weatherQueryCurrent':
-    return `https://api.openweathermap.org/data/2.5/weather?units=imperial&lat=${latitude}&lon=${longitude}&appid=${accessKey}`
-  case 'weatherQueryForecast':
-    return `https://api.openweathermap.org/data/2.5/onecall?units=imperial&lat=${latitude}&lon=${longitude}&exclude=minutely&appid=${accessKey}`
-  case 'googleMap':
-    return `https://maps.googleapis.com/maps/api/js?key=${accessKey}&callback=initMap`
-  default:
-    return `https://api.mapbox.com/geocoding/v5/mapbox.places/Los%20Angeles.json?access_token=${token}`
+    case 'coordsQuery':
+      return `https://api.mapbox.com/geocoding/v5/mapbox.places/${coords}.json?access_token=${token}`
+    case 'locationNameQuery':
+      return `https://api.mapbox.com/geocoding/v5/mapbox.places/${locationName}.json?access_token=${token}`
+    case 'weatherQueryCurrent':
+      return `https://api.openweathermap.org/data/2.5/weather?units=imperial&lat=${latitude}&lon=${longitude}&appid=${accessKey}`
+    case 'weatherQueryForecast':
+      return `https://api.openweathermap.org/data/2.5/onecall?units=imperial&lat=${latitude}&lon=${longitude}&exclude=minutely&appid=${accessKey}`
+    case 'googleMap':
+      return `https://maps.googleapis.com/maps/api/js?key=${accessKey}&callback=initMap`
+    default:
+      return `https://api.mapbox.com/geocoding/v5/mapbox.places/Los%20Angeles.json?access_token=${token}`
   }
 }
 
@@ -157,7 +157,15 @@ export const getPlaceDescription = placeName => {
   return placeNameArr[placeNameLastIndex]
 }
 
-export const getTemp = (unitFC, fTemp) => unitFC === 'f' ? Math.round(fTemp) : Math.round((fTemp - 32) * (5/9))
+export const farenheitToCelcius = fTemp => Math.round((fTemp - 32) * (5/9))
+
+export const meterPerSecToMph = meterPerSec => Math.round(meterPerSec * 2.237 * 10) / 10
+
+export const meterPerSecToKph = meterPerSec => Math.round(meterPerSec * 3.6 * 10) / 10
+
+export const meterToMiles = meter => Math.round(meter / 1609 * 10) / 10
+
+export const getTemp = (unitFC, fTemp) => unitFC === 'f' ? Math.round(fTemp) : farenheitToCelcius(fTemp)
 
 export const getDayHours = (sunRise, sunSet) => {
   const hours = Math.round(((sunSet + '000') - (sunRise + '000')) / 360000) / 10
@@ -182,6 +190,30 @@ export const getQuarter = ({ sunRise, sunSet, dt }) => {
   const dayQuarter = (sunRiseMilliSeconds - currentMilliSeconds) / (sunRiseMilliSeconds - sunSetMilliSeconds)
 
   return Math.round(dayQuarter * 100) / 100
+}
+
+export const getWindDir = degree => {
+  degree = degree % 360
+  switch (true) {
+    case (degree < 22.5 || degree >= 337.5):
+      return 'North'
+    case (degree > 22.5 && degree <= 67.5):
+      return 'NW'
+    case (degree > 67.5 && degree <= 112.5):
+      return 'West'
+    case (degree > 112.5 && degree <= 157.5):
+      return 'SW'
+    case (degree > 157.5 && degree <= 202.5):
+      return 'South'
+    case (degree > 202.5 && degree <= 247.5):
+      return 'SE'
+    case (degree > 247.5 && degree <= 292.5):
+      return 'East'
+    case (degree > 292.5 && degree < 337.5):
+      return 'NE'
+    default:
+      return 'not a degree'
+  }
 }
 
 // export const setLocalStorage = (key, value) => window.localStorage.setItem(key, JSON.stringify(value))

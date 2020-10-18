@@ -1,0 +1,59 @@
+@import 'utilities/design-utilities/sass-variables';
+
+.details {
+  max-width: 500px;
+  font-size: 0.8em;
+
+  .borderBottom {
+    border-bottom: 1px dotted rgba(255, 255, 255, 0.2);
+  }
+
+  .detailsIconContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .detailsIcon {
+    max-width: 48px;
+  }
+
+  .detailsTable {
+    div {
+      border-bottom: 1px dotted rgba(255, 255, 255, 0.2);
+      padding: 4px 0;
+    }
+
+    div:nth-child(even) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .noBorders {
+      border: none;
+    }
+  }
+
+  .detailsReport {
+    font-size: 12px;
+    div {
+      padding: 5px 0;
+    }
+
+    div:first-child {
+      padding-top: 18px;
+    }
+    div:last-child {
+      padding-bottom: 18px;
+    }
+  }
+
+  @media (min-width: $smBreakPoint) {
+    font-size: 1em;
+
+    .detailsIcon {
+      max-width: 64px;
+    }
+  }
+}
+
+

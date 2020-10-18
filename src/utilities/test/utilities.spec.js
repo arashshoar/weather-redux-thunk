@@ -5,7 +5,8 @@ import {
   getStoredData,
   getBackgroundsSrc,
   getLatLngFromCoords,
-  getDateFromMilSeconds
+  getDateFromMilSeconds,
+  getWindDir
 } from '../utilities'
 import { localStorageMock } from 'test-utilities/mocks'
 
@@ -105,5 +106,28 @@ describe('When we test utilities functions', () => {
     expect(getDateFromMilSeconds(date2, 0)).toEqual('10/5')
     expect(getDateFromMilSeconds(date3, 0)).toEqual('8/12')
     expect(getDateFromMilSeconds(date4, 0)).toEqual('12/12')
+  })
+
+  it('getWindDir gives us the proper direction', () => {
+    for(let degree = 0; degree <= 360; degree++) {
+      if (degree < 22.5 || degree >= 337.5) {
+        expect(getWindDir(degree)).toEqual('North')
+      } else if (degree > 22.5 && degree <= 67.5) {
+        expect(getWindDir(degree)).toEqual('NW')
+      } else if (degree > 67.5 && degree <= 112.5) {
+        expect(getWindDir(degree)).toEqual('West')
+      } else if (degree > 112.5 && degree <= 157.5) {
+        expect(getWindDir(degree)).toEqual('SW')
+      } else if (degree > 157.5 && degree <= 202.5) {
+        expect(getWindDir(degree)).toEqual('South')
+      } else if (degree > 202.5 && degree <= 247.5) {
+        expect(getWindDir(degree)).toEqual('SE')
+      } else if (degree > 247.5 && degree <= 292.5) {
+        expect(getWindDir(degree)).toEqual('East')
+      } else if (degree > 292.5 && degree < 337.5) {
+        expect(getWindDir(degree)).toEqual('NE')
+      }
+    }
+    expect(getWindDir('bla bla bla')).toEqual('not a degree')
   })
 })

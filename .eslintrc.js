@@ -118,11 +118,11 @@ module.exports = {
   // `typescript-eslint`, as some rules such as `no-array-constructor` aren't compatible.
   rules: {
     // http://eslint.org/docs/rules/
+    indent: ["error", 2, { "SwitchCase": 1 }],
     'key-spacing': ["error", { "mode": "strict" }],
     'object-curly-spacing': ["error", "always"],
     quotes: [1, "single"],
     semi: ["error", "never"],
-    indent: ["error", 2],
     'array-callback-return': 'warn',
     'default-case': ['warn', { commentPattern: '^no default$' }],
     'dot-location': ['warn', 'property'],
