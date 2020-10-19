@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+
 import GadgetContainer from 'components/common/GadgetContainer/GadgetContainer'
 import WindGen from './WindGen/WindGen'
 
@@ -23,7 +24,7 @@ const Wind = ({ windSpeed, pressure, windDegree }) => {
           </div>
           <div className={styles.pressure}>
             <div>Barometer</div>
-            <div>{`${pressure ? pressure : 'loading'} inches`}</div>
+            <div>{`${pressure ? pressure : 'loading'} hpa`}</div>
           </div>
         </div>
         <div className={styles.border}></div>

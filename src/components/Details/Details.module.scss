@@ -3,15 +3,19 @@
 .details {
   max-width: 500px;
   font-size: 0.8em;
+  padding: 10px;
 
   .borderBottom {
+    width: 100%;
     border-bottom: 1px dotted rgba(255, 255, 255, 0.2);
+    display: flex;
   }
 
   .detailsIconContainer {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex: 1;
   }
 
   .detailsIcon {
@@ -19,15 +23,23 @@
   }
 
   .detailsTable {
-    div {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+
+    .cell {
       border-bottom: 1px dotted rgba(255, 255, 255, 0.2);
       padding: 4px 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
     }
 
-    div:nth-child(even) {
+    .cell:nth-child(even) {
       padding-left: 0;
       padding-right: 0;
     }
+
     .noBorders {
       border: none;
     }

@@ -3,7 +3,7 @@
 .app {
   color: #ffffff;
   display: grid;
-  grid-template-columns: auto;
+  grid-template-columns: 100%;
   grid-template-rows: auto;
   grid-template-areas:
     "currentTempContainer"
@@ -11,8 +11,6 @@
     "componentsSetTwo"
     "links";
   max-width: 1200px;
-  //min-height: 800px;
-
 
   .asideContainer {
     grid-area: asideContainer;

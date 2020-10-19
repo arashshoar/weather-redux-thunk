@@ -1,12 +1,11 @@
 import React from 'react'
-import { SRC } from 'utilities/constants'
-import { getTemp } from 'utilities/utilities'
+import {getTemp, getWeatherIcon} from 'utilities/utilities'
 import UpArrowIcon from 'components/common/UpArrowIcon'
 import DownArrowIcon from 'components/common/DownArrowIcon'
 
 import styles from './DescriptionAndTemp.module.scss'
 
-const DescriptionAndTemp = ({ description, maxTemp, minTemp, currentTemp, unitFC, setUnitFC }) => {
+const DescriptionAndTemp = ({ description, maxTemp, minTemp, currentTemp, unitFC, setUnitFC, descriptionFirst, isDay }) => {
 
   React.useEffect(() => {
     if (unitFC) {
@@ -18,7 +17,7 @@ const DescriptionAndTemp = ({ description, maxTemp, minTemp, currentTemp, unitFC
   return (
     <div className={styles.descriptionAndTemp}>
       <div className={styles.description}>
-        <img src={SRC.clearDayIcon} alt=""/>
+        <img src={getWeatherIcon({ description: descriptionFirst, isDay })} alt=""/>
         <div>{description}</div>
       </div>
       <div>

@@ -6,9 +6,12 @@ import {
   getBackgroundsSrc,
   getLatLngFromCoords,
   getDateFromMilSeconds,
-  getWindDir
+  getWindDir,
+  getWeatherIcon
 } from '../utilities'
+
 import { localStorageMock } from 'test-utilities/mocks'
+import { SRC } from '../constants'
 
 Object.defineProperty(window, 'localStorage', {
   value: new localStorageMock(),
@@ -130,4 +133,38 @@ describe('When we test utilities functions', () => {
     }
     expect(getWindDir('bla bla bla')).toEqual('not a degree')
   })
+
+  it('getWindDir gives us the proper direction', () => {
+    expect(getWeatherIcon({ description: 'thunderstorm with drizzle' })).toEqual(SRC.thunderstorm)
+    expect(getWeatherIcon({ description: 'light intensity drizzle rain' })).toEqual(SRC.lightRain)
+    expect(getWeatherIcon({ description: 'clear sky', isDay: true })).toEqual(SRC.clearDayIcon)
+    expect(getWeatherIcon({ description: 'clear sky' })).toEqual(SRC.clearNightIcon)
+    expect(getWeatherIcon({ description: 'few clouds', isDay: true })).toEqual(SRC.fewCloudsDayIcon)
+    expect(getWeatherIcon({ description: 'few clouds' })).toEqual(SRC.fewCloudsNightIcon)
+    expect(getWeatherIcon({ description: 'scattered clouds' })).toEqual(SRC.scatteredClouds)
+    expect(getWeatherIcon({ description: 'broken clouds' })).toEqual(SRC.scatteredClouds)
+    expect(getWeatherIcon({ description: 'overcast clouds' })).toEqual(SRC.overcastClouds)
+    expect(getWeatherIcon({ description: 'light rain' })).toEqual(SRC.lightRain)
+    expect(getWeatherIcon({ description: 'moderate rain' })).toEqual(SRC.lightRain)
+    expect(getWeatherIcon({ description: 'heavy intensity rain' })).toEqual(SRC.heavyIntensityRain)
+    expect(getWeatherIcon({ description: 'very heavy rain' })).toEqual(SRC.heavyIntensityRain)
+    expect(getWeatherIcon({ description: 'extreme rain' })).toEqual(SRC.heavyIntensityRain)
+    expect(getWeatherIcon({ description: 'freezing rain' })).toEqual(SRC.lightRainAndSnow)
+    expect(getWeatherIcon({ description: 'light intensity shower rain' })).toEqual(SRC.heavyIntensityRain)
+    expect(getWeatherIcon({ description: 'shower rain' })).toEqual(SRC.heavyIntensityRain)
+    expect(getWeatherIcon({ description: 'heavy intensity shower rain' })).toEqual(SRC.heavyIntensityRain)
+    expect(getWeatherIcon({ description: 'ragged shower rain' })).toEqual(SRC.heavyIntensityRain)
+    expect(getWeatherIcon({ description: 'rain  thunderstorm' })).toEqual(SRC.thunderstorm)
+    expect(getWeatherIcon({ description: ' rain drizzle' })).toEqual(SRC.lightRain)
+    expect(getWeatherIcon({ description: 'Light rain and snow' })).toEqual(SRC.lightRainAndSnow)
+    expect(getWeatherIcon({ description: 'rain snow' })).toEqual(SRC.snow)
+    expect(getWeatherIcon({ description: 'Rain and snow' })).toEqual(SRC.lightRainAndSnow)
+  })
+
+
 })
+
+
+
+
+

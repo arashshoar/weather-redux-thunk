@@ -13,7 +13,9 @@ describe('When we test DescriptionAndTemp', () => {
     minTemp: 1,
     currentTemp: 12,
     unitFC,
-    setUnitFC: setUnitFCMock
+    setUnitFC: setUnitFCMock,
+    isDay: true,
+    descriptionFirst: 'clear sky'
   })
 
   Object.defineProperty(window, 'beforeunload', {

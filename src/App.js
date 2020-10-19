@@ -4,9 +4,11 @@ import CurrentTemp from 'components/CurrentTemp/CurrentTemp'
 
 import { getUsersLocation } from 'actions/getUsersLocation'
 import { getBackgroundsSrc } from 'utilities/utilities'
+
 import Wind from 'components/Wind/Wind'
 import SunMoon from 'components/SunMoon/SunMoon'
 import Details from 'components/Details/Details'
+import Precipitation from 'components/Precipitation/Precipitation'
 
 import styles from './App.module.scss'
 
@@ -35,6 +37,7 @@ const App = ({ getUsersLocation }) => {
       </div>
       <div className={styles.componentsSetTwo}>
         <Wind />
+        <Precipitation />
       </div>
 
     </div>

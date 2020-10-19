@@ -31,6 +31,6 @@ describe('When we test SunMoon', () => {
     )
 
     expect(wrapper.find('[className="wind"]').text()).toContain('100 mph')
-    expect(wrapper.find('[className="pressure"]').text()).toContain('500 inches')
+    expect(wrapper.find('[className="pressure"]').text()).toContain('Barometer500 hpa')
   })
 })

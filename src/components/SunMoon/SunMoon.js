@@ -4,11 +4,11 @@ import { connect } from 'react-redux'
 import { getDayHours, getTimeFromMilliSeconds, getQuarter } from 'utilities/utilities'
 import GadgetContainer from 'components/common/GadgetContainer/GadgetContainer'
 import SunLocation from './SunLocation'
-import MoonIcon from './MoonIcon'
+import WeatherIcon from './WeatherIcon'
 
 import styles from './SunMoon.module.scss'
 
-const SunMoon = ({ sunRise, sunSet, dt, timeZone }) => {
+const SunMoon = ({ sunRise, sunSet, dt, timeZone, weather }) => {
   const dayQuarter = getQuarter({ sunRise, sunSet, dt })
   const baseMoveToLeft = dayQuarter * 200 
 
@@ -18,7 +18,7 @@ const SunMoon = ({ sunRise, sunSet, dt, timeZone }) => {
         {
           dayQuarter < 1 && dayQuarter > 0
             ? <SunLocation sunRise={getTimeFromMilliSeconds(sunRise, timeZone)} sunSet={getTimeFromMilliSeconds(sunSet, timeZone)} baseMoveToLeft={baseMoveToLeft} />
-            : <MoonIcon />
+            : <WeatherIcon sunRise={sunRise} sunSet={sunSet} dt={dt} description={weather[0].description} />
         }
         <div className={styles.tableContainer}>
           <div>Sun Rise: {getTimeFromMilliSeconds(sunRise, timeZone)}</div>
@@ -35,6 +35,7 @@ const mapStateToProps = state => ({
   sunSet: state.currentWeatherData.sys.sunset,
   dt: state.currentWeatherData.dt,
   timeZone: state.currentWeatherData.timezone,
+  weather: state.currentWeatherData.weather,
 })
 
 export default connect(mapStateToProps, null)(SunMoon)

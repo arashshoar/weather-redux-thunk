@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { backgroundSrcSets } from 'utilities/backgroundPathes'
+import { SRC } from './constants'
 
 export const getUrl = ({ name, accessKey, locationName, token, coords, latitude, longitude }) => {
 
@@ -192,6 +193,8 @@ export const getQuarter = ({ sunRise, sunSet, dt }) => {
   return Math.round(dayQuarter * 100) / 100
 }
 
+export const getIfItIsDay = (sunRise, sunSet, dt) => dt >= sunRise && dt < sunSet
+
 export const getWindDir = degree => {
   degree = degree % 360
   switch (true) {
@@ -216,6 +219,121 @@ export const getWindDir = degree => {
   }
 }
 
+
+export const getPrecipitation = precip => {
+  if (precip >= 0 && precip < 10) {
+    return SRC.rainIcon0
+  } else if (precip >=10 && precip <20) {
+    return SRC.rainIcon10
+  } else if (precip >=20 && precip <30) {
+    return SRC.rainIcon20
+  } else if (precip >=30 && precip <40) {
+    return SRC.rainIcon30
+  } else if (precip >=40 && precip <50) {
+    return SRC.rainIcon40
+  } else if (precip >=50 && precip <60) {
+    return SRC.rainIcon50
+  } else if (precip >=60 && precip <70) {
+    return SRC.rainIcon60
+  } else if (precip >=70 && precip <80) {
+    return SRC.rainIcon70
+  } else if (precip >=80 && precip <90) {
+    return SRC.rainIcon80
+  } else if (precip >=90 && precip <98) {
+    return SRC.rainIcon90
+  } else {
+    return SRC.rainIcon100
+  }
+}
+
+export const getWeatherIcon = ({ description, isDay }) => {
+  switch (true) {
+    case (description === 'clear sky' && isDay):
+      return SRC.clearDayIcon
+    case (description === 'clear sky' && !isDay):
+      return SRC.clearNightIcon
+    case (description === 'few clouds' && isDay):
+      return SRC.fewCloudsDayIcon
+    case (description === 'few clouds' && !isDay):
+      return SRC.fewCloudsNightIcon
+    case (description === 'scattered clouds'):
+      return SRC.scatteredClouds
+    case (description === 'broken clouds'):
+      return SRC.scatteredClouds
+    case (description === 'overcast clouds'):
+      return SRC.overcastClouds
+    case (description === 'light rain'):
+      return SRC.lightRain
+    case (description === 'moderate rain'):
+      return SRC.lightRain
+    case (description === 'heavy intensity rain'):
+      return SRC.heavyIntensityRain
+    case (description === 'very heavy rain'):
+      return SRC.heavyIntensityRain
+    case (description === 'extreme rain'):
+      return SRC.heavyIntensityRain
+    case (description === 'freezing rain'):
+      return SRC.lightRainAndSnow
+    case (description === 'light intensity shower rain'):
+      return SRC.heavyIntensityRain
+    case (description === 'shower rain'):
+      return SRC.heavyIntensityRain
+    case (description === 'heavy intensity shower rain'):
+      return SRC.heavyIntensityRain
+    case (description === 'ragged shower rain'):
+      return SRC.heavyIntensityRain
+    case (description.includes('thunderstorm')):
+      return SRC.thunderstorm
+    case (description.includes('drizzle')):
+      return SRC.lightRain
+    case (description === 'Light rain and snow'):
+      return SRC.lightRainAndSnow
+    case (description === 'Rain and snow'):
+      return SRC.lightRainAndSnow
+    case (description.includes('snow')):
+      return SRC.snow
+    default:
+      return SRC.clearDayIcon
+  }
+}
+
 // export const setLocalStorage = (key, value) => window.localStorage.setItem(key, JSON.stringify(value))
 
 // export const getLocalStorage = key => JSON.parse(window.localStorage.getItem(key))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
