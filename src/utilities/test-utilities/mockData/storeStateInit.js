@@ -22,5 +22,13 @@ export const storeStateIint = {
   },
   mapData: {
     features: []
+  },
+  forecastWeatherData: {
+    hourly: [
+      {
+        weather: [],
+        rain: 0
+      },
+    ]
   }
 }

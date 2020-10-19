@@ -44,7 +44,7 @@ describe('When we test SunMoon', () => {
         <SunMoon />
       </RootForTests>
     )
-    expect(wrapper.find('MoonIcon')).toHaveLength(1)
+    expect(wrapper.find('WeatherIcon')).toHaveLength(1)
   })
 
 })

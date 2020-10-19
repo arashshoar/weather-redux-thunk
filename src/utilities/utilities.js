@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { backgroundSrcSets } from 'utilities/backgroundPathes'
-import { SRC } from './constants'
+import { SRC, weatherConditions } from './constants'
 
 export const getUrl = ({ name, accessKey, locationName, token, coords, latitude, longitude }) => {
 
@@ -219,30 +219,28 @@ export const getWindDir = degree => {
   }
 }
 
+export const getPrecipitationIcon = description => {
+  const { lightRain, moderateRain, heavyRain, veryHeavyRain, extremeRain, lightRainAndSnow, snow, thunderstorm } = weatherConditions
 
-export const getPrecipitation = precip => {
-  if (precip >= 0 && precip < 10) {
-    return SRC.rainIcon0
-  } else if (precip >=10 && precip <20) {
-    return SRC.rainIcon10
-  } else if (precip >=20 && precip <30) {
-    return SRC.rainIcon20
-  } else if (precip >=30 && precip <40) {
-    return SRC.rainIcon30
-  } else if (precip >=40 && precip <50) {
-    return SRC.rainIcon40
-  } else if (precip >=50 && precip <60) {
-    return SRC.rainIcon50
-  } else if (precip >=60 && precip <70) {
-    return SRC.rainIcon60
-  } else if (precip >=70 && precip <80) {
-    return SRC.rainIcon70
-  } else if (precip >=80 && precip <90) {
-    return SRC.rainIcon80
-  } else if (precip >=90 && precip <98) {
-    return SRC.rainIcon90
-  } else {
-    return SRC.rainIcon100
+  switch (true) {
+    case (lightRain.includes(description)):
+      return SRC.rainIcon20
+    case (moderateRain.includes(description)):
+      return SRC.rainIcon40
+    case (heavyRain.includes(description)):
+      return SRC.rainIcon60
+    case (veryHeavyRain.includes(description)):
+      return SRC.rainIcon80
+    case (extremeRain.includes(description)):
+      return SRC.rainIcon100
+    case (lightRainAndSnow.includes(description)):
+      return SRC.lightRainAndSnow
+    case (snow.includes(description)):
+      return SRC.snow
+    case (thunderstorm.includes(description)):
+      return SRC.thunderstorm
+    default:
+      return SRC.rainIcon0
   }
 }
 

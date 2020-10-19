@@ -76,3 +76,57 @@ export const KEYS = {
   storedCurrentWeatherData: 'storedCurrentWeatherData',
   storedForecastWeatherData: 'storedForecastWeatherData',
 }
+
+export const weatherConditions = {
+  lightRain: [
+    'light rain',
+    'light intensity shower rain',
+    'thunderstorm with light rain',
+    'light intensity drizzle', 'light intensity drizzle rain',
+    'thunderstorm with light drizzle'
+  ],
+  moderateRain: [
+    'moderate rain',
+    'shower rain',
+    'thunderstorm with rain',
+    'drizzle', 'drizzle rain',
+    'thunderstorm with drizzle'
+  ],
+  heavyRain: [
+    'heavy intensity rain',
+    'heavy intensity shower rain',
+    'thunderstorm with heavy rain',
+    'heavy intensity drizzle',
+    'thunderstorm with heavy drizzle'
+  ],
+  veryHeavyRain: [
+    'very heavy rain',
+    'shower rain and drizzle'
+  ],
+  extremeRain: [
+    'extreme rain',
+    'ragged shower rain',
+    'heavy shower rain and drizzle',
+    'shower drizzle'
+  ],
+  lightRainAndSnow: [
+    'freezing rain',
+    'Light rain and snow',
+    'Rain and snow'
+  ],
+  snow: [
+    'light snow',
+    'Snow',
+    'Heavy snow',
+    'Sleet',
+    'Light shower sleet',
+    'Shower sleet',
+    'Shower snow',
+    'Heavy shower snow'
+  ],
+  thunderstorm: [
+    'light thunderstorm',
+    'thunderstorm',
+    'ragged thunderstorm'
+  ]
+}
