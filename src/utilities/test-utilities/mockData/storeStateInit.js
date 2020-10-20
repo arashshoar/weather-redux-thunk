@@ -1,4 +1,5 @@
 export const storeStateIint = {
+  coords: '-121.977,37.311',
   isSearchDone: false,
   cityName: 'Data is loading...',
   countryName: 'Data is loading...',

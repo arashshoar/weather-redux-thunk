@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { backgroundSrcSets } from 'utilities/backgroundPathes'
 import { SRC, weatherConditions } from './constants'
+import { getGoogleMapDarkStyles } from './googleMapDarkStyles'
 
 export const getUrl = ({ name, accessKey, locationName, token, coords, latitude, longitude }) => {
 
@@ -100,7 +101,7 @@ export const getDateFromMilSeconds = (milli, timeZone) => {
   }
 
   const date = new Date(Number(milli + '000') + Number(timeZone + '000'))
-  const [year, month, day] = date.toISOString().split('T')[0].split('-')
+  const [ , month, day] = date.toISOString().split('T')[0].split('-')
   return `${month[0] === '0' ? month.substr(1) : month}/${day[0] === '0' ? day.substr(1) : day }`
 }
 
@@ -304,6 +305,28 @@ export const getWeatherIcon = (description, isDay) => {
       return SRC.snow
     default:
       return SRC.clearDayIcon
+  }
+}
+
+export const initMapFunctionString = ({ lat, lng }) => (
+  `function initMap() {
+    // The location base on our coordinates
+    var center = { lat: ${lat}, lng: ${lng} };
+    // The map, centered at our location
+    var map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 14,
+      center: center,
+      styles: ${JSON.stringify(getGoogleMapDarkStyles())},
+    });
+    // The marker, positioned at our location
+    var marker = new google.maps.Marker({ position: center, map: map });
+  }`
+)
+
+export const removeOldScriptElement = id => {
+  const oldElemScript = document.getElementById(id)
+  if (oldElemScript) {
+    oldElemScript.remove()
   }
 }
 

@@ -12,6 +12,7 @@ import Precipitation from 'components/Precipitation/Precipitation'
 import Forecast from 'components/Forecast/Forecast'
 
 import styles from './App.module.scss'
+import GoogleMap from "./components/GoogleMap/GoogleMap";
 
 const App = ({ getUsersLocation }) => {
 
@@ -36,6 +37,7 @@ const App = ({ getUsersLocation }) => {
       <div className={styles.componentsSetOne}>
         <Wind />
         <Details />
+        <GoogleMap />
       </div>
       <div className={styles.componentsSetTwo}>
         <SunMoon />
