@@ -184,6 +184,18 @@ export const getTimeFromMilliSeconds = (milli, timeZone) => {
   return `${time[0][0] === '0' ? time[0].substr(1) : time[0]}:${time[1]}`
 }
 
+export const getHourAMPM = time => {
+  const hour = Number(time.split(':')[0])
+
+  return hour > 12 ? `${hour - 12} PM` : `${hour} ${hour === 12 ? 'PM' : 'AM'}`
+}
+
+export const getDay = (milli, timeZone) => {
+  const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday','Thursday', 'Friday', 'Saturday']
+  const date = new Date(Number(milli + '000') + Number(timeZone + '000'))
+  return weekDays[date.getDay()]
+}
+
 export const getQuarter = ({ sunRise, sunSet, dt }) => {
   const sunRiseMilliSeconds = Number(sunRise + '000')
   const sunSetMilliSeconds = Number(sunSet + '000')
@@ -244,7 +256,7 @@ export const getPrecipitationIcon = description => {
   }
 }
 
-export const getWeatherIcon = ({ description, isDay }) => {
+export const getWeatherIcon = (description, isDay) => {
   switch (true) {
     case (description === 'clear sky' && isDay):
       return SRC.clearDayIcon

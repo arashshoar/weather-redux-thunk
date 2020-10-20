@@ -9,6 +9,7 @@ import Wind from 'components/Wind/Wind'
 import SunMoon from 'components/SunMoon/SunMoon'
 import Details from 'components/Details/Details'
 import Precipitation from 'components/Precipitation/Precipitation'
+import Forecast from 'components/Forecast/Forecast'
 
 import styles from './App.module.scss'
 
@@ -19,6 +20,7 @@ const App = ({ getUsersLocation }) => {
     const backgroundImage = getBackgroundsSrc()
     console.log("++++++||||||", backgroundImage)
     document.body.style.backgroundImage = `url(${backgroundImage})`
+    document.body.style.backgroundAttachment = 'fixed'
     // document.body.style.backgroundSize = 'cover'
   })
 
@@ -32,12 +34,13 @@ const App = ({ getUsersLocation }) => {
       </div>
       <div className={styles.links}></div>
       <div className={styles.componentsSetOne}>
-        <SunMoon />
+        <Wind />
         <Details />
       </div>
       <div className={styles.componentsSetTwo}>
-        <Wind />
+        <SunMoon />
         <Precipitation />
+        <Forecast />
       </div>
 
     </div>

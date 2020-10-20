@@ -5,7 +5,7 @@ import { getWeatherIcon, getIfItIsDay } from 'utilities/utilities'
 const WeatherIcon = ({ sunRise, sunSet, dt, description }) => (
   <div className={styles.moonIconContainer}>
     <div className={styles.svgContainer}>
-      <img src={getWeatherIcon({ description, isDay: getIfItIsDay(sunRise, sunSet, dt) })} alt="" />
+      <img src={getWeatherIcon(description, getIfItIsDay(sunRise, sunSet, dt))} alt="" />
     </div>
   </div>
 )

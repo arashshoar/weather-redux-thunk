@@ -17,7 +17,7 @@ const DescriptionAndTemp = ({ description, maxTemp, minTemp, currentTemp, unitFC
   return (
     <div className={styles.descriptionAndTemp}>
       <div className={styles.description}>
-        <img src={getWeatherIcon({ description: descriptionFirst, isDay })} alt=""/>
+        <img src={getWeatherIcon(descriptionFirst, isDay)} alt=""/>
         <div>{description}</div>
       </div>
       <div>

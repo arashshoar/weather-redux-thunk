@@ -1,0 +1,63 @@
+.forecast {
+
+  .dropDown {
+    border-bottom: solid 1px #ffffff;
+  }
+
+  .table {
+    max-width: 100%;
+    display: flex;
+    overflow-y: auto;
+  }
+
+  .cell {
+    & > div {
+      padding: 3px 10px;
+      font-size: 0.7rem;
+
+      img {
+        max-width: 34px;
+      }
+    }
+  }
+
+  .forecastRow {
+    display: flex;
+    max-width: 100%;
+    border-bottom: 1px dotted rgba(255, 255, 255, 0.2);
+    margin: 14px 0;
+
+    .day {
+      display: flex;
+      flex: 1;
+      font-size: 0.8rem;
+      align-items: flex-start;
+    }
+
+    .icons {
+      display: flex;
+      flex: 2;
+      justify-content: space-around;
+
+      img {
+        max-width: 24px;
+      }
+
+      img:last-child {
+        max-width: 18px;
+        max-height: 18px;
+      }
+    }
+
+    .maxMin {
+      display: flex;
+      flex: 1;
+      justify-content: space-evenly;
+      font-size: 0.8rem;
+
+      div:last-child {
+        color: #a5d6ff
+      }
+    }
+  }
+}

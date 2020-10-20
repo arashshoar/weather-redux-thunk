@@ -20,7 +20,7 @@ const Details = ({ feelsLike, humidity, visibility, maxTemp, minTemp, windSpeed,
     <div className={styles.details}>
       <div className={`${styles.borderBottom}`}>
         <div className={`${styles.detailsIconContainer}`}>
-          <img alt="Status" src={getWeatherIcon({ description: weather[0].description, isDay: getIfItIsDay(sunRise, sunSet, dt) })} className={styles.detailsIcon} />
+          <img alt="Status" src={getWeatherIcon(weather[0].description, getIfItIsDay(sunRise, sunSet, dt))} className={styles.detailsIcon} />
         </div>
         <div className={`${styles.detailsTable}`}>
           <div className={styles.cell}>
