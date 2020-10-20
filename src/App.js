@@ -13,6 +13,7 @@ import Forecast from 'components/Forecast/Forecast'
 import GoogleMap from './components/GoogleMap/GoogleMap'
 
 import styles from './App.module.scss'
+import Advertisement from "./components/Advertisement/Advertisement";
 
 const App = ({ getUsersLocation }) => {
 
@@ -29,7 +30,9 @@ const App = ({ getUsersLocation }) => {
       <div className={styles.currentTempContainer}>
         <CurrentTemp />
       </div>
-      <div className={styles.links}></div>
+      <div className={styles.links}>
+        <Advertisement />
+      </div>
       <div className={styles.componentsSetOne}>
         <Wind />
         <Details />

@@ -1,0 +1,56 @@
+@import "utilities/design-utilities/sass-variables";
+
+.links {
+  display: flex;
+  justify-content: flex-start;
+  font-size: 0.7rem;
+  overflow-y: auto;
+
+
+  a:link, a:visited {
+    color: $linksBlue;
+  }
+
+  .linkItem {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-right: 20px;
+
+    svg {
+      color: $portfolioIcon;
+      font-size: 20px;
+      margin: 5px 0 5px 0;
+    }
+  }
+
+  @media only screen and (min-width: $mdBreakPoint) {
+    font-size: 0.9rem;
+
+    .linkItem {
+
+      svg {
+        font-size: 32px;
+      }
+    }
+  }
+
+  @media only screen and (min-width: $xlBreakPoint) {
+    font-size: 0.7rem;
+    overflow-y: unset;
+    flex-direction: column;
+
+    .linkItem {
+
+      svg {
+        font-size: 20px;
+      }
+
+      div:last-child {
+        margin-bottom: 14px;
+      }
+    }
+  }
+
+}

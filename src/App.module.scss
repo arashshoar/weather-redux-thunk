@@ -14,13 +14,13 @@
 
   .asideContainer {
     grid-area: asideContainer;
-    border: solid 2px red;
+    //border: solid 2px red;
     display: none;
   }
 
   .currentTempContainer {
     grid-area: currentTempContainer;
-    border: solid 2px orange;
+    //border: solid 2px orange;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -29,19 +29,17 @@
 
   .links {
     grid-area: links;
-    border: solid 2px blue;
-
+    //border: solid 2px blue;
   }
 
   .componentsSetOne {
     grid-area: componentsSetOne;
-    border: solid 2px green;
-
+    //border: solid 2px green;
   }
 
   .componentsSetTwo {
     grid-area: componentsSetTwo;
-    border: solid 2px maroon;
+    //border: solid 2px maroon;
   }
 
   @media only screen and (min-width: $mdBreakPoint ) {
