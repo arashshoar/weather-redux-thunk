@@ -3,26 +3,22 @@ import { connect } from 'react-redux'
 import CurrentTemp from 'components/CurrentTemp/CurrentTemp'
 
 import { getUsersLocation } from 'actions/getUsersLocation'
-import { getBackgroundsSrc } from 'utilities/utilities'
+import { getApplicationBackground } from 'utilities/utilities'
 
 import Wind from 'components/Wind/Wind'
 import SunMoon from 'components/SunMoon/SunMoon'
 import Details from 'components/Details/Details'
 import Precipitation from 'components/Precipitation/Precipitation'
 import Forecast from 'components/Forecast/Forecast'
+import GoogleMap from './components/GoogleMap/GoogleMap'
 
 import styles from './App.module.scss'
-import GoogleMap from "./components/GoogleMap/GoogleMap";
 
 const App = ({ getUsersLocation }) => {
 
   React.useEffect(() => {
     getUsersLocation()
-    const backgroundImage = getBackgroundsSrc()
-    console.log("++++++||||||", backgroundImage)
-    document.body.style.backgroundImage = `url(${backgroundImage})`
-    document.body.style.backgroundAttachment = 'fixed'
-    // document.body.style.backgroundSize = 'cover'
+    getApplicationBackground()
   })
 
   return (
