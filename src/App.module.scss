@@ -1,5 +1,9 @@
 @import 'utilities/design-utilities/sass-variables';
 
+body {
+  background-attachment: fixed;
+}
+
 .app {
   color: #ffffff;
   display: grid;
@@ -55,14 +59,18 @@
   @media only screen and (min-width: $xlBreakPoint ) {
     margin: auto;
     min-width: 1200px;
-    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-columns: 18% 41% 41%;
     grid-template-areas:
-            "asideContainer currentTempContainer currentTempContainer currentTempContainer currentTempContainer"
-            "asideContainer links links links links"
-            "asideContainer componentsSetOne componentsSetOne componentsSetTwo componentsSetTwo";
+            "asideContainer currentTempContainer currentTempContainer"
+            "asideContainer links links"
+            "asideContainer componentsSetOne componentsSetTwo";
 
     .asideContainer {
       display: grid;
+    }
+
+    .links {
+      display: none;
     }
   }
 }

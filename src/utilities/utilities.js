@@ -132,10 +132,10 @@ export const getBackgroundsSrc = () => {
 
 export const getApplicationBackground = () => {
   const backgroundImage = getBackgroundsSrc()
+
   console.log("++++++||||||", backgroundImage)
   document.body.style.backgroundImage = `url(${backgroundImage})`
-  document.body.style.backgroundAttachment = 'fixed'
-  // document.body.style.backgroundSize = 'cover'
+
   if (isMobile()) {
     document.querySelector('[class*="CurrentTemp_currentTemp"]').style.minHeight = `${document.documentElement.clientHeight}px`
   }

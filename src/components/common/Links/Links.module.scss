@@ -19,7 +19,6 @@
     margin-right: 20px;
 
     svg {
-      color: $portfolioIcon;
       font-size: 20px;
       margin: 5px 0 5px 0;
     }
@@ -37,15 +36,13 @@
   }
 
   @media only screen and (min-width: $xlBreakPoint) {
-    font-size: 0.7rem;
     overflow-y: unset;
     flex-direction: column;
+    padding-top: 30px;
 
     .linkItem {
-
-      svg {
-        font-size: 20px;
-      }
+      margin-right: 10px;
+      margin-top: 10px;
 
       div:last-child {
         margin-bottom: 14px;

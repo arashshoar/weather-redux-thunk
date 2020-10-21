@@ -7,8 +7,10 @@ import {
   getLatLngFromCoords,
   getDateFromMilSeconds,
   getWindDir,
-  getWeatherIcon
-} from '../utilities'
+  getWeatherIcon,
+  getApplicationBackground,
+  getPrecipitationIcon,
+} from 'utilities/utilities'
 
 import { localStorageMock } from 'test-utilities/mocks'
 import { SRC } from '../constants'
@@ -16,7 +18,6 @@ import { SRC } from '../constants'
 Object.defineProperty(window, 'localStorage', {
   value: new localStorageMock(),
 })
-
 
 describe('When we test utilities functions', () => {
   const options = {
@@ -159,6 +160,22 @@ describe('When we test utilities functions', () => {
     expect(getWeatherIcon('Light rain and snow')).toEqual(SRC.lightRainAndSnow)
     expect(getWeatherIcon('rain snow')).toEqual(SRC.snow)
     expect(getWeatherIcon('Rain and snow')).toEqual(SRC.lightRainAndSnow)
+  })
+
+  it('getApplicationBackground should gives proper background to our application', () => {
+    getApplicationBackground()
+    expect(document.body.style.backgroundImage).toContain('https://images.unsplash.com/photo')
+  })
+
+  it('', () => {
+    expect(getPrecipitationIcon('light rain')).toEqual(SRC.rainIcon20)
+    expect(getPrecipitationIcon('moderate rain')).toEqual(SRC.rainIcon40)
+    expect(getPrecipitationIcon('heavy intensity rain')).toEqual(SRC.rainIcon60)
+    expect(getPrecipitationIcon('very heavy rain')).toEqual(SRC.rainIcon80)
+    expect(getPrecipitationIcon('extreme rain')).toEqual(SRC.rainIcon100)
+    expect(getPrecipitationIcon('Light rain and snow')).toEqual(SRC.lightRainAndSnow)
+    expect(getPrecipitationIcon('thunderstorm')).toEqual(SRC.thunderstorm)
+    expect(getPrecipitationIcon('Heavy snow')).toEqual(SRC.snow)
   })
 })
 

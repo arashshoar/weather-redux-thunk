@@ -1,7 +1,7 @@
 @import "utilities/design-utilities/sass-variables.scss";
 
 .locationList {
-  min-width: 300px;
+  max-width: 280px;
 
   .dropButton {
     box-shadow: 1px 1px 2px black;
@@ -18,7 +18,16 @@
     text-shadow: none;
     padding-right: 3px;
     padding-left: 3px;
+    max-width: 280px;
   }
+
+  @media only screen and (min-width: $xsBreakPoint) {
+    min-width: 300px;
+
+      .dropdownMenuLinks {
+        max-width: initial;
+      }
+    }
 
   @media only screen and (min-width: $xlBreakPoint) {
     padding-top: 45px;

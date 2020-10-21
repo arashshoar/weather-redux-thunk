@@ -10,10 +10,12 @@ import SunMoon from 'components/SunMoon/SunMoon'
 import Details from 'components/Details/Details'
 import Precipitation from 'components/Precipitation/Precipitation'
 import Forecast from 'components/Forecast/Forecast'
-import GoogleMap from './components/GoogleMap/GoogleMap'
+import GoogleMap from 'components/GoogleMap/GoogleMap'
+import Advertisement from 'components/Advertisement/Advertisement'
+import Aside from 'components/Aside/Aside'
+
 
 import styles from './App.module.scss'
-import Advertisement from "./components/Advertisement/Advertisement";
 
 const App = ({ getUsersLocation }) => {
 
@@ -25,7 +27,7 @@ const App = ({ getUsersLocation }) => {
   return (
     <div className={styles.app} >
       <div className={styles.asideContainer}>
-
+        <Aside />
       </div>
       <div className={styles.currentTempContainer}>
         <CurrentTemp />

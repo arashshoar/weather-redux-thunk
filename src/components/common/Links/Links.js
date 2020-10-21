@@ -37,8 +37,8 @@ const Links = () => {
       <div className={styles.linkItem}>
         <FontAwesomeIcon icon={faLinkedin} />
         <a href="https://www.linkedin.com/in/arash-shoar-439ab198" target="_blank">LinkedIn</a>
-        <div>Angular 1.5</div>
-        <div>Apr 2017</div>
+        <div>Profile</div>
+        <div>More About Me</div>
       </div>
     </div>
   )
