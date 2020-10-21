@@ -11,7 +11,13 @@ jest.mock('actions/fetchActions', () => {
 
   return ({
     ...rest,
-    fetchLocations: jest.fn().mockImplementation(() => ({ type: '', payload: '' }))
+    fetchLocations: jest.fn().mockImplementation(() => (fn = jest.fn()) => ({ type: '', features: [
+      {
+        center: [100, 50],
+        place_type: ['place']
+      }
+    ]
+    }))
   })
 })
 
@@ -24,6 +30,8 @@ jest.mock('actions/actions', () => {
   })
 })
 
+const flushPromise = () => new Promise(resolve => setTimeout(resolve, 0))
+
 describe('When we are testing the LocationInput component', () => {
   let wapper
 
@@ -33,9 +41,10 @@ describe('When we are testing the LocationInput component', () => {
     expect(wapper.find('input').prop('value')).toBe('Salam all my Friends')
   })
 
-  it('when user click on search button store getting fresh data for application', () => {
+  it('when user click on search button store getting fresh data for application', async () => {
     wapper = mount(<RootForTests><LocationInput /></RootForTests>)
     wapper.find('button').simulate('click')
+    await flushPromise()
     expect(setIsSearchDone).toHaveBeenCalledWith(true)
     expect(fetchLocations).toHaveBeenCalled()
   })

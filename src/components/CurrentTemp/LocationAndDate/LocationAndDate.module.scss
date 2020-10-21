@@ -5,6 +5,10 @@ $currentTempBase: 1rem;
   flex-direction: column;
   padding-bottom: 10px;
 
+  .inTheName {
+    color: transparent;
+  }
+
   .city {
     font-size: 1.5 * $currentTempBase;
   }

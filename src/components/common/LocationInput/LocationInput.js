@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { fetchLocations } from 'actions/fetchActions'
 import { setIsSearchDone } from 'actions/actions'
+import { getWholeData } from 'actions/getWholeData'
 
 import styles from './LocationInput.module.scss'
 
@@ -14,12 +15,19 @@ export const handleKeyDown = (locationName, fetchLocations, setIsSearchDone) => 
   }
 }
 
-export const handleSearchButtonClick = (locationName, fetchLocations, setIsSearchDone) => {
-  fetchLocations({ locationName })
+export const handleSearchButtonClick = async (locationName, fetchLocations, setIsSearchDone, getWholeData) => {
+
+  if (getWholeData) {
+    const { features: [{ center: [longitude, latitude] }] } = await fetchLocations({ locationName })
+    getWholeData(latitude, longitude)
+  } else {
+    fetchLocations({ locationName })
+  }
+
   setIsSearchDone(true)
 }
 
-const LocationInput = ({ fetchLocations, setIsSearchDone }) => {
+const LocationInput = ({ fetchLocations, setIsSearchDone, getWholeData }) => {
   const [locationName, setLocationName] = React.useState('')
   return (
     <>
@@ -39,7 +47,7 @@ const LocationInput = ({ fetchLocations, setIsSearchDone }) => {
             className="btn btn-outline-secondary"
             type="button"
             id="button-addon2"
-            onClick={() => handleSearchButtonClick(locationName, fetchLocations, setIsSearchDone)}
+            onClick={() => handleSearchButtonClick(locationName, fetchLocations, setIsSearchDone, getWholeData)}
           >
             Search
           </button>
@@ -51,7 +59,8 @@ const LocationInput = ({ fetchLocations, setIsSearchDone }) => {
 
 const mapDispatchToProps = dispatch => ({
   fetchLocations: ({ locationName, coords }) => dispatch(fetchLocations({ locationName, coords })),
-  setIsSearchDone: isSearchDone => dispatch(setIsSearchDone(isSearchDone))
+  setIsSearchDone: isSearchDone => dispatch(setIsSearchDone(isSearchDone)),
+  getWholeData: (latitude, longitude) => dispatch(getWholeData(latitude, longitude)),
 })
 
 export default connect(null, mapDispatchToProps)(LocationInput)

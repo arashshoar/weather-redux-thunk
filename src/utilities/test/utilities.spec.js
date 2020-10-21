@@ -10,6 +10,7 @@ import {
   getWeatherIcon,
   getApplicationBackground,
   getPrecipitationIcon,
+  getHourAMPM,
 } from 'utilities/utilities'
 
 import { localStorageMock } from 'test-utilities/mocks'
@@ -17,6 +18,10 @@ import { SRC } from '../constants'
 
 Object.defineProperty(window, 'localStorage', {
   value: new localStorageMock(),
+})
+
+Object.defineProperty(navigator, 'userAgent', {
+  value: 'blackberry'
 })
 
 describe('When we test utilities functions', () => {
@@ -163,11 +168,15 @@ describe('When we test utilities functions', () => {
   })
 
   it('getApplicationBackground should gives proper background to our application', () => {
+    const currentTemp = document.createElement('div')
+    currentTemp.setAttribute('class', 'CurrentTemp_currentTemp')
+    document.body.append(currentTemp)
+
     getApplicationBackground()
     expect(document.body.style.backgroundImage).toContain('https://images.unsplash.com/photo')
   })
 
-  it('', () => {
+  it('getPrecipitationIcon should gives us the right icon', () => {
     expect(getPrecipitationIcon('light rain')).toEqual(SRC.rainIcon20)
     expect(getPrecipitationIcon('moderate rain')).toEqual(SRC.rainIcon40)
     expect(getPrecipitationIcon('heavy intensity rain')).toEqual(SRC.rainIcon60)
@@ -177,9 +186,10 @@ describe('When we test utilities functions', () => {
     expect(getPrecipitationIcon('thunderstorm')).toEqual(SRC.thunderstorm)
     expect(getPrecipitationIcon('Heavy snow')).toEqual(SRC.snow)
   })
+
+  it('getHourAMPM gives us the right time', () => {
+    expect(getHourAMPM('18:00')).toEqual('6&nbsp;PM')
+    expect(getHourAMPM('12:00')).toEqual('12&nbsp;PM')
+    expect(getHourAMPM('7:00')).toEqual('7&nbsp;AM')
+  })
 })
-
-
-
-
-

@@ -18,7 +18,7 @@ const Links = () => {
       </div>
       <div className={styles.linkItem}>
         <FontAwesomeIcon icon={faGithub} />
-        <a href="http://arashshoar.com/" target="_blank">Review</a>
+        <a href="https://github.com/arashshoar/weather-redux-thunk" target="_blank">Review</a>
         <div>React-Thunk</div>
         <div>Weather App</div>
       </div>

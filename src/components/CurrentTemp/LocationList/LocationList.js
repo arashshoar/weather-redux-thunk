@@ -17,7 +17,8 @@ const LocationList = ({ places, isSearchDone, getWholeData }) => (
   <div className={`dropdown ${styles.locationList}`}>
     <button
       className={`btn btn-outline-light dropdown-toggle ${styles.dropButton}`}
-      type="button" id="dropdownMenuButton"
+      type="button"
+      id="dropdownMenuButton"
       data-toggle="dropdown"
       aria-haspopup="true"
       aria-expanded="false"
