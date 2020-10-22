@@ -134,10 +134,38 @@ export const getApplicationBackground = () => {
   const backgroundImage = getBackgroundsSrc()
 
   console.log("++++++||||||", backgroundImage)
-  document.body.style.backgroundImage = `url(${backgroundImage})`
+
+  setAddBackgroundElement(backgroundImage)
 
   if (isMobile()) {
+    setTimeout(addBlurToBackground, 500)
+    // setting CurrentTemp height as Mobiles
     document.querySelector('[class*="CurrentTemp_currentTemp"]').style.minHeight = `${document.documentElement.clientHeight}px`
+  }
+}
+
+export const setAddBackgroundElement = (backgroundImage) => {
+  const divBackGround = document.createElement('div')
+  divBackGround.setAttribute('class', 'divBackGround')
+  divBackGround.style.backgroundImage = `url(${backgroundImage})`
+  divBackGround.style.minWidth = document.documentElement.clientWidth + 'px'
+  divBackGround.style.minHeight = document.documentElement.clientHeight + 'px'
+  divBackGround.style.width = '100%'
+  divBackGround.style.height = '100%'
+  divBackGround.style.position = 'fixed'
+  divBackGround.style.zIndex = '-1000'
+  document.body.prepend(divBackGround)
+}
+
+export const addBlurToBackground = () => {
+  window.onscroll = () => {
+    const elem = document.querySelector('.divBackGround')
+    if (!elem.style.filter) {
+      elem.style.filter = 'blur(5px)'
+    }
+    if (!elem.style.WebkitFilter) {
+      elem.style.WebkitFilter = 'blur(5px)'
+    }
   }
 }
 
@@ -269,6 +297,8 @@ export const getPrecipitationIcon = description => {
 }
 
 export const getWeatherIcon = (description, isDay) => {
+  description = description.toLowerCase()
+
   switch (true) {
     case (description === 'clear sky' && isDay):
       return SRC.clearDayIcon
@@ -278,6 +308,8 @@ export const getWeatherIcon = (description, isDay) => {
       return SRC.fewCloudsDayIcon
     case (description === 'few clouds' && !isDay):
       return SRC.fewCloudsNightIcon
+    case (description === 'fog'):
+      return SRC.mostlyCloudyDayNight
     case (description === 'scattered clouds'):
       return SRC.scatteredClouds
     case (description === 'broken clouds'):
@@ -308,9 +340,9 @@ export const getWeatherIcon = (description, isDay) => {
       return SRC.thunderstorm
     case (description.includes('drizzle')):
       return SRC.lightRain
-    case (description === 'Light rain and snow'):
+    case (description === 'light rain and snow'):
       return SRC.lightRainAndSnow
-    case (description === 'Rain and snow'):
+    case (description === 'rain and snow'):
       return SRC.lightRainAndSnow
     case (description.includes('snow')):
       return SRC.snow
