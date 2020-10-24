@@ -310,6 +310,8 @@ export const getWeatherIcon = (description, isDay) => {
       return SRC.fewCloudsNightIcon
     case (description === 'fog'):
       return SRC.mostlyCloudyDayNight
+    case (description === 'mist'):
+      return SRC.mostlyCloudyDayNight
     case (description === 'scattered clouds'):
       return SRC.scatteredClouds
     case (description === 'broken clouds'):

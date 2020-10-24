@@ -11,6 +11,7 @@ import {
   getApplicationBackground,
   getPrecipitationIcon,
   getHourAMPM,
+  addBlurToBackground,
 } from 'utilities/utilities'
 
 import { localStorageMock } from 'test-utilities/mocks'
@@ -147,6 +148,8 @@ describe('When we test utilities functions', () => {
     expect(getWeatherIcon('clear sky')).toEqual(SRC.clearNightIcon)
     expect(getWeatherIcon('few clouds', true)).toEqual(SRC.fewCloudsDayIcon)
     expect(getWeatherIcon('few clouds')).toEqual(SRC.fewCloudsNightIcon)
+    expect(getWeatherIcon('fog')).toEqual(SRC.mostlyCloudyDayNight)
+    expect(getWeatherIcon('mist')).toEqual(SRC.mostlyCloudyDayNight)
     expect(getWeatherIcon('scattered clouds')).toEqual(SRC.scatteredClouds)
     expect(getWeatherIcon('broken clouds')).toEqual(SRC.scatteredClouds)
     expect(getWeatherIcon('overcast clouds')).toEqual(SRC.overcastClouds)
@@ -167,13 +170,22 @@ describe('When we test utilities functions', () => {
     expect(getWeatherIcon('Rain and snow')).toEqual(SRC.lightRainAndSnow)
   })
 
-  it('getApplicationBackground should gives proper background to our application', () => {
+  it('getApplicationBackground should gives proper background to our application and blur effect is a mobile device', async () => {
     const currentTemp = document.createElement('div')
     currentTemp.setAttribute('class', 'CurrentTemp_currentTemp')
     document.body.append(currentTemp)
+    const divBackGround = document.createElement('div')
+    divBackGround.setAttribute('class', '.divBackGround')
+    document.body.prepend(divBackGround)
+    function flushPromise() {return new Promise(resolve => setTimeout(resolve, 500))}
 
     getApplicationBackground()
-    expect(document.body.style.backgroundImage).toContain('https://images.unsplash.com/photo')
+    await flushPromise()
+    window.dispatchEvent(new Event('scroll'))
+
+    expect(document.querySelector('.divBackGround').style.filter).toEqual('blur(5px)')
+    expect(document.querySelector('.divBackGround').style.WebkitFilter).toEqual('blur(5px)')
+    expect(document.querySelector('.CurrentTemp_currentTemp').style.minHeight).toContain(`${document.documentElement.clientHeight}px`)
   })
 
   it('getPrecipitationIcon should gives us the right icon', () => {

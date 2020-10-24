@@ -6,48 +6,9 @@
   font-size: 0.7rem;
   overflow-y: auto;
 
-
-  a:link, a:visited {
-    color: $linksBlue;
-  }
-
-  .linkItem {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    margin-right: 20px;
-
-    svg {
-      font-size: 20px;
-      margin: 5px 0 5px 0;
-    }
-  }
-
-  @media only screen and (min-width: $mdBreakPoint) {
-    font-size: 0.9rem;
-
-    .linkItem {
-
-      svg {
-        font-size: 32px;
-      }
-    }
-  }
-
   @media only screen and (min-width: $xlBreakPoint) {
     overflow-y: unset;
     flex-direction: column;
     padding-top: 30px;
-
-    .linkItem {
-      margin-right: 10px;
-      margin-top: 10px;
-
-      div:last-child {
-        margin-bottom: 14px;
-      }
-    }
   }
-
 }

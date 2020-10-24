@@ -5,41 +5,47 @@ import { faAddressCard, faUsers, faClipboardCheck} from '@fortawesome/free-solid
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 
 import styles from './Links.module.scss'
+import LinkItem from "../LinkItem/LinkItem";
 
 const Links = () => {
 
   return(
     <div className={styles.links}>
-      <div className={styles.linkItem}>
-        <FontAwesomeIcon icon={faAddressCard} />
-        <a href="http://arashshoar.com/" target="_blank">Resume</a>
-        <div>Portfolio</div>
-        <div>CV</div>
-      </div>
-      <div className={styles.linkItem}>
-        <FontAwesomeIcon icon={faGithub} />
-        <a href="https://github.com/arashshoar/weather-redux-thunk" target="_blank">Review</a>
-        <div>React-Thunk</div>
-        <div>Weather App</div>
-      </div>
-      <div className={styles.linkItem}>
-        <FontAwesomeIcon icon={faUsers} />
-        <a href="http://arashshoar.com/tasks/arash-shoar-apple-id/#/" target="_blank">User App</a>
-        <div>Angular 1.5</div>
-        <div>Apr 2017</div>
-      </div>
-      <div className={styles.linkItem}>
-        <FontAwesomeIcon icon={faClipboardCheck} />
-        <a href="http://arashshoar.com/tasks/arash-shoar-apple-id/#/signup" target="_blank">Form Validation</a>
-        <div>Angular 1.5</div>
-        <div>Apr 2017</div>
-      </div>
-      <div className={styles.linkItem}>
-        <FontAwesomeIcon icon={faLinkedin} />
-        <a href="https://www.linkedin.com/in/arash-shoar-439ab198" target="_blank">LinkedIn</a>
-        <div>Profile</div>
-        <div>More About Me</div>
-      </div>
+      <LinkItem
+        icon={faAddressCard}
+        linkHref="http://arashshoar.com/"
+        LinkText="Resume"
+        linkLine1="Portfolio"
+        linkLine2="Resume"
+      />
+      <LinkItem
+        icon={faGithub}
+        linkHref="https://github.com/arashshoar/weather-redux-thunk"
+        LinkText="Review"
+        linkLine1="React-Thunk"
+        linkLine2="Weather App"
+      />
+      <LinkItem
+        icon={faUsers}
+        linkHref="http://arashshoar.com/tasks/arash-shoar-apple-id/#/"
+        LinkText="User App"
+        linkLine1="Angular 1.5"
+        linkLine2="Apr 2017"
+      />
+      <LinkItem
+        icon={faUsers}
+        linkHref="http://arashshoar.com/tasks/arash-shoar-apple-id/#/signup"
+        LinkText="Form Validation"
+        linkLine1="Angular 1.5"
+        linkLine2="Apr 2017"
+      />
+      <LinkItem
+        icon={faLinkedin}
+        linkHref="https://www.linkedin.com/in/arash-shoar-439ab198"
+        LinkText="LinkedIn"
+        linkLine1="Profile"
+        linkLine2="More About Me"
+      />
     </div>
   )
 }
