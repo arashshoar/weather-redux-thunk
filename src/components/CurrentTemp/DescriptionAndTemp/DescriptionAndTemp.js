@@ -9,7 +9,7 @@ const DescriptionAndTemp = ({ description, maxTemp, minTemp, currentTemp, unitFC
 
   React.useEffect(() => {
     if (unitFC) {
-      window.localStorage.setItem('storedunitFC', unitFC)
+      window.localStorage.setItem('storedUnitFC', unitFC)
     }
 
   }, [unitFC])
