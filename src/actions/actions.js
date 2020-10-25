@@ -1,5 +1,18 @@
 import { CONST } from 'utilities/constants'
 
+export const getUsersLocation = () => ({
+  type: CONST.GET_USERS_LOCATION,
+})
+
+export const checkForStoredUnit = () => ({
+  type: CONST.CHECK_FOR_STORE_UNIT,
+})
+
+export const getWholeData = (latitude, longitude) => ({
+  type: CONST.GET_WHOLE_DATA,
+  payload: { latitude, longitude }
+})
+
 export const setCoords = coords => ({
   type: CONST.SET_COORDS,
   coords,

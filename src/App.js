@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import CurrentTemp from 'components/CurrentTemp/CurrentTemp'
 
-import { getUsersLocation } from 'actions/getUsersLocation'
+import { getUsersLocation } from 'actions/actions'
 import { getApplicationBackground } from 'utilities/utilities'
 
 import Wind from 'components/Wind/Wind'
@@ -20,6 +20,7 @@ import styles from './App.module.scss'
 const App = ({ getUsersLocation }) => {
 
   React.useEffect(() => {
+    console.log('before loading')
     getUsersLocation()
     getApplicationBackground()
   })

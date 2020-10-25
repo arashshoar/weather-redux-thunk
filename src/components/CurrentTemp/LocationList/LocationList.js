@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { getWholeData } from 'actions/getWholeData.js'
+import { getWholeData } from 'actions/actions.js'
 import { getLatLngFromCoords, getPlaceDescription } from 'utilities/utilities'
 import LocationIcon from 'components/common/LocationIcon/LocationIcon'
 import LocationInput from 'components/common/LocationInput/LocationInput'

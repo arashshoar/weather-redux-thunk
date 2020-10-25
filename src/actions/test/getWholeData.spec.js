@@ -1,4 +1,4 @@
-import { getWholeData } from '../getWholeData'
+import { getWholeData } from '../getWholeDataSaga'
 import { fetchLocations, fetchWeather } from '../fetchActions'
 import { setCoords } from '../actions'
 

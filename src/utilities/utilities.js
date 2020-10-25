@@ -191,6 +191,8 @@ export const getLatLngFromCoords = coords => {
   }
 }
 
+export const setCoordsOfLatitudeLongitude = (latitude, longitude) => `${longitude}, ${latitude}`
+
 export const getPlaceDescription = placeName => {
   const placeNameArr = placeName.split(',')
   const placeNameLastIndex = placeNameArr.length - 1
