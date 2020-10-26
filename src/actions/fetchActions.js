@@ -1,12 +1,15 @@
 import axios from 'axios'
-import { getFreshWeatherData, getStoredData, getUrl, roundCoords } from '../utilities/utilities'
-import { setCurrentWeatherData, setForecastWeatherData } from './actions'
+import {
+  getFreshWeatherData,
+  getStoredData,
+  getUrl,
+  roundCoords,
+} from '../utilities/utilities'
 
 export const fetchLocations = async ({ coords, locationName }) => {
-
   const storedLocationData = coords && JSON.parse(window.localStorage.getItem('storedLocationData' + roundCoords(coords)) && null)
 
-  return storedLocationData
+  const axiosTypeMapData =  storedLocationData
     ? storedLocationData
     : axios.get(getUrl({
       name: coords ? 'coordsQuery' : 'locationNameQuery',
@@ -14,20 +17,20 @@ export const fetchLocations = async ({ coords, locationName }) => {
       locationName,
       coords
     }))
-}
 
-export const fetchWeather = (weatherQueryKey, storeKey, latitude, longitude) => {
-
-  return async dispatch => {
-
-    const weatherData = getStoredData(storeKey, latitude, longitude)
-      ? getStoredData(storeKey, latitude, longitude)
-      : await getFreshWeatherData(weatherQueryKey, storeKey, latitude, longitude)
-
-    if (weatherQueryKey === 'weatherQueryCurrent') {
-      dispatch(setCurrentWeatherData(weatherData))
-    } else {
-      dispatch(setForecastWeatherData(weatherData))
-    }
+  if (coords) {
+    window.localStorage.setItem('storedLocationData' + roundCoords(coords), JSON.stringify(axiosTypeMapData))
   }
+
+  return axiosTypeMapData
 }
+
+export const fetchWeather = async (weatherQueryKey, storeKey, latitude, longitude) => {
+
+  const weatherData = getStoredData(storeKey, latitude, longitude)
+    ? getStoredData(storeKey, latitude, longitude)
+    : await getFreshWeatherData(weatherQueryKey, storeKey, latitude, longitude)
+
+  return weatherData
+}
+
