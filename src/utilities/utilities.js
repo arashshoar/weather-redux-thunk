@@ -227,7 +227,7 @@ export const getTimeFromMilliSeconds = (milli, timeZone) => {
 export const getHourAMPM = time => {
   const hour = Number(time.split(':')[0])
 
-  return hour > 12 ? `${hour - 12}&nbsp;PM` : `${hour}&nbsp;${hour === 12 ? 'PM' : 'AM'}`
+  return hour > 12 ? `${hour - 12} PM` : `${hour} ${hour === 12 ? 'PM' : 'AM'}`
 }
 
 export const getDay = (milli, timeZone) => {
