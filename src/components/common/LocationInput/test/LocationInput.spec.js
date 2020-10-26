@@ -4,7 +4,7 @@ import RootForTests from 'test-utilities/RootForTests'
 
 import LocationInput from '../LocationInput'
 import { setIsSearchDone } from 'actions/actions'
-import { fetchLocations } from 'actions/fetchActions'
+import { fetchLocations } from 'utilities/utilitiesPart2'
 
 jest.mock('actions/fetchActions', () => {
   const rest = jest.requireActual('actions/fetchActions')

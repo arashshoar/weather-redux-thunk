@@ -1,8 +1,8 @@
 import { call, put, take } from 'redux-saga/effects'
 
-import { fetchLocations, fetchWeather } from './fetchActions'
-import { setCoords, setLocationName, setMapData, setCurrentWeatherData, setForecastWeatherData } from './actions'
-import { getLocationName, roundCoords, setCoordsOfLatitudeLongitude } from 'utilities/utilities'
+import { fetchLocations, fetchWeather } from '../utilities/utilitiesPart2'
+import { setCoords, setLocationName, setMapData, setCurrentWeatherData, setForecastWeatherData } from '../actions/actions'
+import { getLocationName, setCoordsOfLatitudeLongitude } from 'utilities/utilities'
 import { CONST, KEYS } from 'utilities/constants'
 
 export function* getWholeDataSaga() {

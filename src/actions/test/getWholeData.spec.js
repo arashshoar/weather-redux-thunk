@@ -1,5 +1,5 @@
-import { getWholeData } from '../getWholeDataSaga'
-import { fetchLocations, fetchWeather } from '../fetchActions'
+import { getWholeData } from '../../sagas/getWholeDataSaga'
+import { fetchLocations, fetchWeather } from '../../utilities/utilitiesPart2'
 import { setCoords } from '../actions'
 
 jest.mock('../fetchActions', () => {

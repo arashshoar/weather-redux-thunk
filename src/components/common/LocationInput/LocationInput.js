@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { fetchLocations } from 'actions/fetchActions'
+import { fetchLocations } from 'utilities/utilitiesPart2'
 import { setIsSearchDone } from 'actions/actions'
 import { getWholeData, setMapData } from 'actions/actions'
 

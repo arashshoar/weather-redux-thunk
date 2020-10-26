@@ -1,9 +1,9 @@
 import { put, take, call } from 'redux-saga/effects'
 
-import { getWholeData } from '../getWholeDataSaga'
+import { getWholeData } from '../../sagas/getWholeDataSaga'
 import { getUsersLocation } from '../actions'
 import { CONST, someCityCoords } from 'utilities/constants'
-import getUsersLocationSaga from 'store/sagas/getUsersLocationSaga'
+import getUsersLocationSaga from 'sagas/getUsersLocationSaga'
 import { getUserCurrentPosition } from '../../utilities/utilities'
 import { checkForStoredUnit } from 'actions/actions'
 

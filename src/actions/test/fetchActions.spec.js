@@ -1,4 +1,4 @@
-import { fetchLocations, fetchWeather } from '../fetchActions'
+import { fetchLocations, fetchWeather } from '../../utilities/utilitiesPart2'
 import { getUrl } from 'utilities/utilities'
 import { setMapData, setCurrentWeatherData, setForecastWeatherData } from '../actions'
 

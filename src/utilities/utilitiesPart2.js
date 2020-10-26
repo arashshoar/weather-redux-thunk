@@ -4,7 +4,7 @@ import {
   getStoredData,
   getUrl,
   roundCoords,
-} from '../utilities/utilities'
+} from './utilities'
 
 export const fetchLocations = async ({ coords, locationName }) => {
   const storedLocationData = coords && JSON.parse(window.localStorage.getItem('storedLocationData' + roundCoords(coords)) && null)

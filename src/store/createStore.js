@@ -3,7 +3,7 @@ import createSagaMiddleware from 'redux-saga'
 import thunk from 'redux-thunk'
 import logger from 'redux-logger'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import rootSaga from './sagas/rootSaga'
+import rootSaga from '../sagas/rootSaga'
 
 import rootReducers from 'reducers/rootReducers'
 import { storeStateIint } from 'utilities/test-utilities/mockData/storeStateInit'
@@ -16,8 +16,7 @@ const enhancer = composeWithDevTools(
 )
 
 const store = createStore(rootReducers, storeStateIint, enhancer)
-console.log('run saga')
+
 sagaMiddleware.run(rootSaga)
-console.log('After run saga')
 
 export default store
