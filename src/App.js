@@ -39,7 +39,7 @@ const App = ({ getUsersLocation }) => {
       <div className={styles.componentsSetOne}>
         <Wind />
         <Details />
-        <GoogleMap />
+        {/*<GoogleMap />*/}
       </div>
       <div className={styles.componentsSetTwo}>
         <SunMoon />

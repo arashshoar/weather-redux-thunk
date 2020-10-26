@@ -2,32 +2,33 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { fetchLocations } from 'actions/fetchActions'
 import { setIsSearchDone } from 'actions/actions'
-import { getWholeData } from 'actions/actions'
+import { getWholeData, setMapData } from 'actions/actions'
 
 import styles from './LocationInput.module.scss'
 
 export const handleChangeInput = setLocationName => event => setLocationName(event.target.value)
 
-export const handleKeyDown = (locationName, fetchLocations, setIsSearchDone) => event => {
+export const handleKeyDown = (locationName, setIsSearchDone, setMapData) => event => {
 
   if (event.key === 'Enter') {
-    handleSearchButtonClick(locationName, fetchLocations, setIsSearchDone)
+    handleSearchButtonClick(locationName, setIsSearchDone, setMapData)
   }
 }
 
-export const handleSearchButtonClick = async (locationName, fetchLocations, setIsSearchDone, getWholeData) => {
+export const handleSearchButtonClick = async (locationName, setIsSearchDone, setMapData, getWholeData) => {
 
   if (getWholeData) {
-    const { features: [{ center: [longitude, latitude] }] } = await fetchLocations({ locationName })
+    const { data: { features: [{ center: [longitude, latitude] }] } } = await fetchLocations({ locationName })
     getWholeData(latitude, longitude)
   } else {
-    fetchLocations({ locationName })
+    const { data: mapData } = await fetchLocations({ locationName })
+    setMapData(mapData)
   }
 
   setIsSearchDone(true)
 }
 
-const LocationInput = ({ fetchLocations, setIsSearchDone, getWholeData }) => {
+const LocationInput = ({ setIsSearchDone, getWholeData, setMapData }) => {
   const [locationName, setLocationName] = React.useState('')
   return (
     <>
@@ -40,14 +41,14 @@ const LocationInput = ({ fetchLocations, setIsSearchDone, getWholeData }) => {
           aria-describedby="button-addon2"
           value={locationName}
           onChange={handleChangeInput(setLocationName)}
-          onKeyDown={handleKeyDown(locationName, fetchLocations, setIsSearchDone)}
+          onKeyDown={handleKeyDown(locationName, setIsSearchDone, setMapData)}
         />
         <div className="input-group-append">
           <button
             className="btn btn-outline-secondary"
             type="button"
             id="button-addon2"
-            onClick={() => handleSearchButtonClick(locationName, fetchLocations, setIsSearchDone, getWholeData)}
+            onClick={() => handleSearchButtonClick(locationName, setIsSearchDone, setMapData, getWholeData)}
           >
             Search
           </button>
@@ -58,7 +59,7 @@ const LocationInput = ({ fetchLocations, setIsSearchDone, getWholeData }) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  fetchLocations: ({ locationName, coords }) => dispatch(fetchLocations({ locationName, coords })),
+  setMapData: mapData => dispatch(setMapData(mapData)),
   setIsSearchDone: isSearchDone => dispatch(setIsSearchDone(isSearchDone)),
   getWholeData: (latitude, longitude) => dispatch(getWholeData(latitude, longitude)),
 })

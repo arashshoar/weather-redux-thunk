@@ -200,8 +200,8 @@ describe('When we test utilities functions', () => {
   })
 
   it('getHourAMPM gives us the right time', () => {
-    expect(getHourAMPM('18:00')).toEqual('6&nbsp;PM')
-    expect(getHourAMPM('12:00')).toEqual('12&nbsp;PM')
-    expect(getHourAMPM('7:00')).toEqual('7&nbsp;AM')
+    expect(getHourAMPM('18:00')).toEqual('6 PM')
+    expect(getHourAMPM('12:00')).toEqual('12 PM')
+    expect(getHourAMPM('7:00')).toEqual('7 AM')
   })
 })
