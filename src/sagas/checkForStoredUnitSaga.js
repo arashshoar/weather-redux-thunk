@@ -1,9 +1,9 @@
 import { put, take } from 'redux-saga/effects'
-import { setUnitFC } from '../actions/actions'
-import { CONST } from '../utilities/constants'
+import { setUnitFC } from 'actions/actions'
+import { CONST } from 'utilities/constants'
 
 export function* checkForStoredUnitSaga() {
-  yield take(CONST.GET_USERS_LOCATION)
+  yield take(CONST.CHECK_FOR_STORE_UNIT)
   const storedUnitFC = window.localStorage.getItem('storedUnitFC')
 
   if (storedUnitFC !== 'undefined' && storedUnitFC) {

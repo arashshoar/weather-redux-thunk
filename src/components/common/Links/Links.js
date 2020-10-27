@@ -1,10 +1,10 @@
 import React from 'react'
 
-import { faAddressCard, faUsers, faClipboardCheck} from '@fortawesome/free-solid-svg-icons'
+import { faAddressCard, faUsers, faClipboardCheck } from '@fortawesome/free-solid-svg-icons'
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
+import LinkItem from '../LinkItem/LinkItem'
 
 import styles from './Links.module.scss'
-import LinkItem from "../LinkItem/LinkItem";
 
 const Links = () => {
 

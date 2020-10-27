@@ -15,7 +15,7 @@ function* getUsersLocationSaga() {
       yield put(checkForStoredUnit())
       yield put(getWholeData(latitude, longitude))
     } catch (error) {
-      console.log('User denied to let us have access their location:', error.message)
+      console.log('User denied to let us have access their location:', error)
       const [longitude, latitude] = someCityCoords.NewYork.split(',')
       yield put(checkForStoredUnit())
       yield put(getWholeData(latitude, longitude))
