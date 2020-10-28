@@ -12,7 +12,7 @@ import { storeStateIint } from 'utilities/test-utilities/mockData/storeStateInit
 const sagaMiddleware = createSagaMiddleware()
 
 const enhancer = composeWithDevTools(
-  process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test' ? applyMiddleware(thunk, logger, sagaMiddleware) : applyMiddleware(thunk, sagaMiddleware)
+  process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test' ? applyMiddleware(logger, sagaMiddleware) : applyMiddleware(sagaMiddleware)
 )
 
 const store = createStore(rootReducers, storeStateIint, enhancer)

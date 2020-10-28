@@ -21,6 +21,13 @@ const Links = () => {
         icon={faGithub}
         linkHref="https://github.com/arashshoar/weather-redux-thunk"
         linkText="Review"
+        linkLine1="React-Saga"
+        linkLine2="Weather App"
+      />
+      <LinkItem
+        icon={faGithub}
+        linkHref="https://github.com/arashshoar/weather-redux-thunk/tree/redux-thunk"
+        linkText="Review"
         linkLine1="React-Thunk"
         linkLine2="Weather App"
       />
