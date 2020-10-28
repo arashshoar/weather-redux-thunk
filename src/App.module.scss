@@ -9,18 +9,16 @@
     "currentTempContainer"
     "componentsSetOne"
     "componentsSetTwo"
-    "links";
-  max-width: 1200px;
+    "links"
+    "addSecondary";
 
   .asideContainer {
     grid-area: asideContainer;
-    //border: solid 2px red;
     display: none;
   }
 
   .currentTempContainer {
     grid-area: currentTempContainer;
-    //border: solid 2px orange;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -29,17 +27,26 @@
 
   .links {
     grid-area: links;
-    //border: solid 2px blue;
   }
 
   .componentsSetOne {
     grid-area: componentsSetOne;
-    //border: solid 2px green;
   }
 
   .componentsSetTwo {
     grid-area: componentsSetTwo;
-    //border: solid 2px maroon;
+  }
+
+  .addSecondary{
+    grid-area: addSecondary;
+  }
+
+
+  @media only screen and (min-width: $smBreakPoint ) {
+
+    .addSecondary {
+      display: none;
+    }
   }
 
   @media only screen and (min-width: $mdBreakPoint ) {
@@ -53,7 +60,6 @@
   }
 
   @media only screen and (min-width: $xlBreakPoint ) {
-    margin: auto;
     min-width: 1200px;
     grid-template-columns: 18% 41% 41%;
     grid-template-areas:
@@ -65,8 +71,23 @@
       display: grid;
     }
 
-    .links {
+    .links, .addSecondary {
       display: none;
+    }
+
+  }
+
+  @media only screen and (min-width: $xxlBreakPoint ) {
+    width: 100%;
+    grid-template-columns: 12% 30% 30% 24%;
+    grid-template-areas:
+            "asideContainer currentTempContainer currentTempContainer currentTempContainer"
+            "asideContainer links links links"
+            "asideContainer componentsSetOne componentsSetTwo addSecondary";
+
+    .addSecondary {
+      display: flex;
+      flex-direction: column;
     }
   }
 }

@@ -16,11 +16,11 @@ import Aside from 'components/Aside/Aside'
 
 
 import styles from './App.module.scss'
+import AdvertisementSecondary from './components/AdvertisementSecondary/AdvertisementSecondary'
 
 const App = ({ getUsersLocation }) => {
 
   React.useEffect(() => {
-    console.log('before loading')
     getUsersLocation()
     getApplicationBackground()
   })
@@ -35,6 +35,9 @@ const App = ({ getUsersLocation }) => {
       </div>
       <div className={styles.links}>
         <Advertisement />
+      </div>
+      <div className={styles.addSecondary}>
+        <AdvertisementSecondary />
       </div>
       <div className={styles.componentsSetOne}>
         <Wind />

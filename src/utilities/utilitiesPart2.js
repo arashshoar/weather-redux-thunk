@@ -9,7 +9,7 @@ import {
 export const fetchLocations = async ({ coords, locationName }) => {
   const storedLocationData = coords && JSON.parse(window.localStorage.getItem('storedLocationData' + roundCoords(coords)))
 
-  const axiosTypeMapData = storedLocationData
+  const axiosTypeMapData = storedLocationData && storedLocationData.data
     ? storedLocationData
     : await axios.get(getUrl({
       name: coords ? 'coordsQuery' : 'locationNameQuery',

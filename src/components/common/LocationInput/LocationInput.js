@@ -35,7 +35,7 @@ const LocationInput = ({ setIsSearchDone, getWholeData, setMapData }) => {
       <div className={`input-group mb-3 ${styles.locationList}`}>
         <input
           type="text"
-          className={`form-control ${styles.button}`}
+          className="form-control"
           placeholder="Search for a location"
           aria-label="Search for a location"
           aria-describedby="button-addon2"
