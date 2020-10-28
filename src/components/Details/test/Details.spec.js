@@ -11,7 +11,7 @@ describe('When we are testing Details component', () => {
     </RootForTests>
   )
 
-  it('I has to have proper structure', () => {
+  it('should has to have proper structure', () => {
     expect(wrapper.find('[className="details"]')).toHaveLength(1)
     expect(wrapper.find('[className*="detailsIconContainer"] img')).toHaveLength(1)
     expect(wrapper.find('[className*="detailsTable"] div')).toHaveLength(12)

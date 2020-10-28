@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import CurrentTemp from 'components/CurrentTemp/CurrentTemp'
 
-import { getUsersLocation } from 'actions/getUsersLocation'
+import { getUsersLocation } from 'actions/actions'
 import { getApplicationBackground } from 'utilities/utilities'
 
 import Wind from 'components/Wind/Wind'
@@ -16,6 +16,7 @@ import Aside from 'components/Aside/Aside'
 
 
 import styles from './App.module.scss'
+import AdvertisementSecondary from './components/AdvertisementSecondary/AdvertisementSecondary'
 
 const App = ({ getUsersLocation }) => {
 
@@ -34,6 +35,9 @@ const App = ({ getUsersLocation }) => {
       </div>
       <div className={styles.links}>
         <Advertisement />
+      </div>
+      <div className={styles.addSecondary}>
+        <AdvertisementSecondary />
       </div>
       <div className={styles.componentsSetOne}>
         <Wind />

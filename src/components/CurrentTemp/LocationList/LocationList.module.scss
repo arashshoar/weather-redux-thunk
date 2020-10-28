@@ -1,13 +1,13 @@
 @import "utilities/design-utilities/sass-variables.scss";
 
 .locationList {
-  max-width: 280px;
 
   .dropButton {
     box-shadow: 1px 1px 2px black;
     text-shadow: 1px 1px 2px black;
     color: #ffd333;
     font-size: $searchListFontSize;
+    max-width: 280px;
   }
 
   .dropButton:hover {
@@ -19,6 +19,7 @@
     padding-right: 3px;
     padding-left: 3px;
     max-width: 280px;
+    overflow: hidden;
   }
 
   @media only screen and (min-width: $xsBreakPoint) {

@@ -60,6 +60,8 @@ describe('When we test utilities functions', () => {
     expect(getUrl(options)).toBe('https://api.mapbox.com/geocoding/v5/mapbox.places/location.json?access_token=token')
     options.name = 'weatherQueryCurrent'
     expect(getUrl(options)).toBe('https://api.openweathermap.org/data/2.5/weather?units=imperial&lat=lat&lon=lng&appid=key')
+    options.name = 'weatherQueryForecast'
+    expect(getUrl(options)).toBe('https://api.openweathermap.org/data/2.5/onecall?units=imperial&lat=lat&lon=lng&exclude=minutely&appid=key')
     options.name = 'googleMap'
     expect(getUrl(options)).toBe('https://maps.googleapis.com/maps/api/js?key=key&callback=initMap')
     options.name = ''

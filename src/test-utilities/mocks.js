@@ -23,11 +23,6 @@ export class localStorageMock {
 export const geolocationMock = {
   getCurrentPosition: jest
     .fn()
-    .mockImplementationOnce(
-      (res, rej, options) => {
-        rej(new Error('User denied our permission to access their location'))
-      }
-    )
     .mockImplementation(
       (res, rej, options) => {
         res({ coords: { latitude: 37.3118288, longitude: -121.9770887 } })
