@@ -1,5 +1,5 @@
 import rootReducers from '../rootReducers'
-import { setCoords, setMapData, setCurrentWeatherData, setLocationName, setFoundLocations, setIsSearchDone, setUnitFC, setForecastWeatherData } from 'actions/actions'
+import { setCoords, setMapData, setCurrentWeatherData, setLocationName, setIsSearchDone, setUnitFC, setForecastWeatherData } from 'actions/actions'
 import { storeStateIint } from 'utilities/test-utilities/mockData/storeStateInit'
 
 describe('When we are testing rootReducers', () => {
@@ -26,10 +26,6 @@ describe('When we are testing rootReducers', () => {
 
   it('Should updates cityName and CountryName properties of state', () => {
     expect(rootReducers({}, setLocationName({ cityName: 'San Jose', countryName: 'US' }))).toEqual({ cityName: 'San Jose', countryName: 'US' })
-  })
-
-  it('Should updates foundLocations state property', () => {
-    expect(rootReducers({}, setFoundLocations('locationInformation'))).toEqual({ foundLocations: 'locationInformation' })
   })
 
   it('Should updates isSearchDone state property', () => {

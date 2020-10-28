@@ -23,11 +23,6 @@ export const setLocationName = locationName => ({
   locationName,
 })
 
-export const setFoundLocations = foundLocations => ({
-  type: CONST.SET_FOUND_LOCATIONS,
-  foundLocations,
-})
-
 export const setMapData = mapData => ({
   type: CONST.SET_MAP_DATA,
   mapData,

@@ -6,12 +6,12 @@ import {
   roundCoords,
 } from './utilities'
 
-export const fetchLocations = ({ coords, locationName }) => {
-  const storedLocationData = coords && JSON.parse(window.localStorage.getItem('storedLocationData' + roundCoords(coords)) && null)
+export const fetchLocations = async ({ coords, locationName }) => {
+  const storedLocationData = coords && JSON.parse(window.localStorage.getItem('storedLocationData' + roundCoords(coords)))
 
-  const axiosTypeMapData =  storedLocationData
+  const axiosTypeMapData = storedLocationData
     ? storedLocationData
-    : axios.get(getUrl({
+    : await axios.get(getUrl({
       name: coords ? 'coordsQuery' : 'locationNameQuery',
       token: process.env.REACT_APP_TOKEN,
       locationName,
