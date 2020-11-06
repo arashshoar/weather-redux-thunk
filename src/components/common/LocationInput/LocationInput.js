@@ -32,7 +32,7 @@ const LocationInput = ({ setIsSearchDone, getWholeData, setMapData }) => {
   const [locationName, setLocationName] = React.useState('')
   return (
     <>
-      <div className={`input-group mb-3 ${styles.locationList}`}>
+      <div className={`input-group mb-3 ${styles.locationInput}`}>
         <input
           type="text"
           className="form-control"

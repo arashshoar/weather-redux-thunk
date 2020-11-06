@@ -7,16 +7,15 @@ import { getWholeData } from '../actions/actions'
 
 
 function* getUsersLocationSaga() {
-
   while (true) {
+    let latitude, longitude
     yield take(CONST.GET_USERS_LOCATION)
     try {
-      const { coords: { latitude, longitude } } = yield call(getUserCurrentPosition)
-      yield put(checkForStoredUnit())
-      yield put(getWholeData(latitude, longitude))
+      ({ coords: { latitude, longitude } } = yield call(getUserCurrentPosition))
     } catch (error) {
+      ([longitude, latitude] = someCityCoords.NewYork.split(','))
       console.log('User denied to let us have access their location:', error)
-      const [longitude, latitude] = someCityCoords.NewYork.split(',')
+    } finally {
       yield put(checkForStoredUnit())
       yield put(getWholeData(latitude, longitude))
     }
